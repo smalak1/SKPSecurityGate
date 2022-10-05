@@ -187,7 +187,7 @@
               	<target name="war" depends="build">
               			<mkdir dir="${build-directory}" />
               			<delete file="${build-directory}/${war-file-name}" />
-              			<war warfile="/home/ubuntu/apache-tomcat-8.5.55/webapps/AccountingApp.war" webxml="${web-xml-file}">
+              			<war warfile="/home/ubuntu/apache-tomcat-8.5.55/webapps/SKPSecurityGate.war" webxml="${web-xml-file}">
               				<classes dir="${classes-directory}" />
               				<fileset dir="${web-directory}">
               					<!-- Need to exclude it since webxml is an attribute of the war tag above -->

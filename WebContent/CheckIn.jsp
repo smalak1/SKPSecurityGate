@@ -154,7 +154,7 @@ function deleteAttachment(id)
   		
   		
   							  				
-			<button class="btn btn-primary" type="button" onclick='checkIn()'>Check In</button>			  									  
+					  									  
 			 	
 		
 				
@@ -162,6 +162,19 @@ function deleteAttachment(id)
 
 <form id="frm" action="?a=addBrand" method="post" enctype="multipart/form-data" accept-charset="UTF-8">
 <div class="row">
+
+
+<div class="col-sm-12">
+  	<div class="form-group">
+  	
+  	
+  	<div style="width: 200px;height:200px" id="reader"></div>
+  	
+      
+    </div>
+  </div>
+
+
   <div class="col-sm-12">
   	<div class="form-group">
       <label for="email">Employee Name</label>
@@ -291,6 +304,40 @@ function deleteAttachment(id)
 		
 	
 </script>
+
+
+<script src="js/html5-qrcode.min.js"></script>
+<script>
+
+const html5QrCode = new Html5Qrcode("reader");
+const qrCodeSuccessCallback = (decodedText, decodedResult) => {
+    /* handle success */
+};
+const config = { fps: 10, qrbox: { width: 250, height: 250 } };
+
+// If you want to prefer front camera
+//html5QrCode.start({ facingMode: "user" }, config, qrCodeSuccessCallback);
+
+// If you want to prefer back camera
+html5QrCode.start({ facingMode: "environment" }, config, onScanSuccess);
+
+
+        
+function onScanSuccess(decodedText, decodedResult) {
+    // Handle on success condition with the decoded text or result.
+    alert(decodedText);
+    
+    //alert(decodedResult);
+    //alert(`Scan result: ${decodedText}`, decodedResult);
+    // ...
+    //html5QrcodeScanner.clear();
+    // ^ this will stop the scanner (video feed) and clear the scan area.
+}
+
+//html5QrcodeScanner.render(onScanSuccess);
+
+</script>
+
 
 
 

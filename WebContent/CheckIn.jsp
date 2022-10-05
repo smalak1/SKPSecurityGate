@@ -146,7 +146,19 @@ function deleteAttachment(id)
 
 <br>
 
+
+
 <div class="container" style="padding:20px;background-color:white">
+
+<div class="col-sm-12" align="center">
+  		
+  		
+  							  				
+			<button class="btn btn-primary" type="button" onclick='checkIn()'>Check In</button>			  									  
+			 	
+		
+				
+	</div>	
 
 <form id="frm" action="?a=addBrand" method="post" enctype="multipart/form-data" accept-charset="UTF-8">
 <div class="row">
@@ -165,19 +177,7 @@ function deleteAttachment(id)
     </div>
   </div>
   
-  <div class="col-sm-12" align="center">
-  		
-  		
-  		<c:if test="${checkInType eq 'O'}">							  				
-			<button class="btn btn-primary" type="button" onclick='checkIn()'>Check In</button>			  									  
-		</c:if>
-		
-  		<c:if test="${checkInType eq 'I'}">							  				
-			<button class="btn btn-primary" type="button" onclick='checkIn()'>Check Out</button>			  									  
-		</c:if> 	 	
-		
-				
-	</div>	
+  
   
   <br>
  	

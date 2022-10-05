@@ -3,4 +3,15 @@ roles:
   roleId: 1
   actions: getClientServiceMappingForThisClient,showAddEmployee,showChangePassword,showCheckInScreen,addRemoveClientServiceMapping,getServiceMappingForthisClient,showClientServicesMapping,notifyjsp,showTechnicals,showCheckInScreengetOrderDetailsById,showUserAudit,showHomePage,showCategoryMasterNew,deleteCategory,validateLogin,Logout,showUserRoleMapping,getRoleDetailsForthisUser,addRemoveRole,showEmployeeMaster,addEmployee,deleteEmployee,showAddEmployee,showClientMaster,showAddClient,addClient,deleteClient,searchForClient,showServiceMaster,showAddCategory,addService,deleteService,showAddService,showGroupMaster,addGroup,showAddGroup,saveClient,showUserDetails
   elements: 11,12,21,22,23,24,25,10,700195,700197,700165,700168
-  
+- roleName: "Supervisor"
+  roleId: 2
+  actions: showUserAudit,showHomePage,validateLogin,Logout,showUserRoleMapping,getRoleDetailsForthisUser,addRemoveRole
+  elements: 11,12,21,22,23,24,25,10,700195,700197
+- roleName: "Guard"
+  roleId: 3
+  actions: showUserAudit,showHomePage,validateLogin,Logout,showUserRoleMapping,getRoleDetailsForthisUser,addRemoveRole
+  elements: 11,12,21,22,23,24,25,10,700195,700197
+- roleName: "Employee"
+  roleId: 4
+  actions: showUserAudit,showHomePage,validateLogin,Logout,showUserRoleMapping,getRoleDetailsForthisUser,addRemoveRole
+  elements: 11,12,21,22,23,24,25,10,700195,700197

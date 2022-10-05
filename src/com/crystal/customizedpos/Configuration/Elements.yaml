@@ -1,0 +1,64 @@
+elements:
+- elementId: 12
+  elementName: "Admin"
+  parentElementId: -1
+  elementUrl: ""
+  orderNo: 4
+  childElements: null
+- elementId: 700168
+  elementName: "Check-In"
+  parentElementId: 700165
+  elementUrl: "?a=showCheckInScreen"
+  orderNo: 1
+- elementId: 21
+  elementName: "Category Master"
+  parentElementId: 11
+  elementUrl: "?a=showCategoryMasterNew"
+  orderNo: 2
+  childElements: null
+- elementId: 22
+  elementName: "Client Master"
+  parentElementId: 11
+  elementUrl: "?a=showClientMaster&type=C"
+  orderNo: 1
+  childElements: null
+- elementId: 10
+  elementName: "Group Master"
+  parentElementId: 11
+  elementUrl: "?a=showGroupMaster"
+  orderNo: 6
+  childElements: null
+- elementId: 23
+  elementName: "Service Master"
+  parentElementId: 11
+  elementUrl: "?a=showServiceMaster"
+  orderNo: 2
+  childElements: null
+- elementId: 700165
+  elementName: "Worklist"
+  parentElementId: -1
+  elementUrl: ""
+  orderNo: 1
+- elementId: 24
+  elementName: "Employee Master"
+  parentElementId: 12
+  elementUrl: "?a=showEmployeeMaster"
+  orderNo: 4
+  childElements: null
+- elementId: 25
+  elementName: "User Role Mapping"
+  parentElementId: 12
+  elementUrl: "?a=showUserRoleMapping"
+  orderNo: 4
+  childElements: null
+- elementId: 700195
+  elementName: "My Account"
+  parentElementId: -1
+  elementUrl: ""
+  orderNo: 1
+- elementId: 700197
+  elementName: "User Details"
+  parentElementId: 700195
+  elementUrl: "?a=showUserDetails"
+  orderNo: 1
+  childElements: null

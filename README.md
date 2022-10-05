@@ -1,2 +1,2 @@
-# AccountingApp
-http://13.232.115.213/AccountingApp
+# SKPSecurityGate
+http://13.232.115.213/SKPSecurityGate

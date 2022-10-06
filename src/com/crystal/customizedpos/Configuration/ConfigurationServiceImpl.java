@@ -9695,6 +9695,31 @@ public class ConfigurationServiceImpl  extends CommonFunctions
 		}		
 		return rs;
 	}
+	
+	
+	public CustomResultObject checkInThisEmployee(HttpServletRequest request,Connection con)
+	{
+		CustomResultObject rs=new CustomResultObject();
+		String adhaar_card_no= (request.getParameter("aadhaar_card_no"));		
+		String userId=((HashMap<String, String>) request.getSession().getAttribute("userdetails")).get("user_id");
+		try
+		{	
+			//adhaar_card_no
+			LinkedHashMap<String, String> employeeDetails =lObjConfigDao.getEmployeeDetailsByAdhaarNo(adhaar_card_no, con);
+			lObjConfigDao.checkInEmployee(employeeDetails.get("user_id"),"I", con);
+			rs.setAjaxData("Data Saved Succesfully for "+ employeeDetails.get("name"));
+			
+			
+		}
+		catch (Exception e)
+		{
+			writeErrorToDB(e);
+				rs.setHasError(true);
+		}		
+		return rs;
+	}
+	
+	
 	public CustomResultObject showCheckInScreen(HttpServletRequest request,Connection connections)
 	{
 		CustomResultObject rs=new CustomResultObject();			

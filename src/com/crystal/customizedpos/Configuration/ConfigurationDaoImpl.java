@@ -3628,6 +3628,11 @@ public class ConfigurationDaoImpl extends CommonFunctions {
 		parameters.add(ClientId);
 		return getMap(parameters, "select  * from tbl_user_mst where user_id=?", con);
 	}
+	public LinkedHashMap<String, String> getEmployeeDetailsByAdhaarNo(String adhaarNo, Connection con) throws SQLException {
+		ArrayList<Object> parameters = new ArrayList<>();
+		parameters.add(adhaarNo);
+		return getMap(parameters, "select  * from tbl_user_mst where aadhar_card_no=?", con);
+	}
 
 	public boolean mobileNoAlreadyExist(String mobileNo, long ClientId,String appId,String type, Connection con) throws SQLException {
 		String query = "select count(1) as cnt from mst_Client where activate_flag=1 and mobile_number=? and app_id=? and client_vendor_flag=?";
@@ -4703,6 +4708,15 @@ public class ConfigurationDaoImpl extends CommonFunctions {
 		parameters.add(groupName);
 		return insertUpdateDuablDB("insert into trn_expense_register values (default,?,?,?,sysdate(),?,1,?)", parameters, conWithF);
 	}
+	
+	public long checkInEmployee(String employeeId,String checkInType,Connection conWithF) throws Exception {
+		ArrayList<Object> parameters = new ArrayList<>();
+		parameters.add(employeeId);
+		parameters.add(checkInType);
+		return insertUpdateDuablDB("insert into trn_checkin_register values (default,?,?,sysdate(),1)", parameters, conWithF);
+	}
+	
+	
 
 	
 	public long addExpense(Connection con, HashMap<String, Object> hm) throws Exception {
@@ -6198,7 +6212,7 @@ public class ConfigurationDaoImpl extends CommonFunctions {
 	{	
 		ArrayList<Object> parameters = new ArrayList<>();
 		parameters.add(userId);
-		HashMap<String, String> hm=getMap(parameters, "select check_in_type from trn_checkin_register where user_id=? and date(checked_time)=curdate() ", con);		
+		HashMap<String, String> hm=getMap(parameters, "select check_in_type from trn_checkin_register where user_id=? and date(checked_time)=curdate() order by checked_time desc", con);		
 		return hm.isEmpty()?"O":hm.get("check_in_type");
 	}
 
@@ -6221,11 +6235,11 @@ public class ConfigurationDaoImpl extends CommonFunctions {
 	public List<LinkedHashMap<String, Object>> getListOfLastCheckIns(String userId,int limit,Connection con)
 			throws ClassNotFoundException, SQLException {
 		ArrayList<Object> parameters = new ArrayList<>();
-		parameters.add(userId);
+		
 		parameters.add(limit);
 		
 		return getListOfLinkedHashHashMap(parameters,
-				"select * from trn_checkin_register where user_id=? order by checked_time desc limit ?",
+				"select * from trn_checkin_register tcr,tbl_user_mst tum where tum.user_id=tcr.user_id order by checked_time desc limit ?",
 				con);
 	}
 

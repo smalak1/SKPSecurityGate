@@ -165,7 +165,7 @@ function deleteAttachment(id)
 
 
 <div class="col-sm-12">
-  	<div class="form-group">
+  	<div align="center" class="form-group">
   	
   	
   	<div style="width: 200px;height:200px" id="reader"></div>
@@ -175,20 +175,6 @@ function deleteAttachment(id)
   </div>
 
 
-  <div class="col-sm-12">
-  	<div class="form-group">
-      <label for="email">Employee Name</label>
-      <input type="text" class="form-control" id="brandname" value="${empDetails.name}" readonly  placeholder="eg. " name="brandName">
-    </div>
-  </div>
-  
-  
-  <div class="col-sm-12">
-  	<div class="form-group">
-      <label for="email">Remarks</label>
-      <input type="text" class="form-control" id="txtremarks" value=""  placeholder="eg. Late Due to Traffic" name="txtremarks">
-    </div>
-  </div>
   
   
   
@@ -234,12 +220,10 @@ function deleteAttachment(id)
                 
                   <thead>
                     <tr>
+                    <th><b>Employee Name</b></th>
                      <th><b>Check Time</b></th>
-                     <th><b>Type</b></th>
-                     
-                     <th><b>Location</b></th>
-                     <th><b>Remarks</b></th>
-                     
+                     <th><b>Type</b></th>    
+                                    
                      <th></th>
                      
                     </tr>
@@ -248,7 +232,9 @@ function deleteAttachment(id)
 				<c:forEach items="${lstLastCheckIns}" var="check">
 					<tr >
 					
+						<td>${check.name}</td>
 						<td>${check.checked_time}</td>
+						<td>${check.check_in_type}</td>
 						<td>
 						
 						<c:if test="${check.check_in_type eq 'I'}">							  				
@@ -313,7 +299,7 @@ const html5QrCode = new Html5Qrcode("reader");
 const qrCodeSuccessCallback = (decodedText, decodedResult) => {
     /* handle success */
 };
-const config = { fps: 10, qrbox: { width: 250, height: 250 } };
+const config = { fps: 10, qrbox: { width: 100, height: 100} };
 
 // If you want to prefer front camera
 //html5QrCode.start({ facingMode: "user" }, config, qrCodeSuccessCallback);
@@ -325,7 +311,34 @@ html5QrCode.start({ facingMode: "environment" }, config, onScanSuccess);
         
 function onScanSuccess(decodedText, decodedResult) {
     // Handle on success condition with the decoded text or result.
-    alert(decodedText);
+   // alert(decodedText);
+    
+    
+    
+    
+    	
+    	  document.getElementById("closebutton").style.display='none';
+    	   document.getElementById("loader").style.display='block';
+    	$('#myModal').modal({backdrop: 'static', keyboard: false});;
+
+    	var xhttp = new XMLHttpRequest();
+    	  xhttp.onreadystatechange = function() 
+    	  {
+    	    if (xhttp.readyState == 4 && xhttp.status == 200) 
+    	    { 		      
+    	      /*document.getElementById("responseText").innerHTML=xhttp.responseText;
+    		  document.getElementById("closebutton").style.display='block';
+    		  document.getElementById("loader").style.display='none';
+    		  $('#myModal').modal({backdrop: 'static', keyboard: false});;*/
+    		  alert(xhttp.responseText);
+    		  window.location.reload();
+    	      
+    		  
+    		}
+    	  };
+    	  xhttp.open("GET","?a=checkInThisEmployee&aadhaar_card_no="+decodedText, true);    
+    	  xhttp.send();
+    
     
     //alert(decodedResult);
     //alert(`Scan result: ${decodedText}`, decodedResult);

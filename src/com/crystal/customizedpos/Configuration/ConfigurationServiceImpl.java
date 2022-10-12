@@ -9749,7 +9749,146 @@ public class ConfigurationServiceImpl  extends CommonFunctions
 		}		
 		return rs;
 	}
-	
+	public CustomResultObject addVisitor(HttpServletRequest request, Connection con) throws FileUploadException {
+
+		CustomResultObject rs = new CustomResultObject();
+		HashMap<String, Object> outputMap = new HashMap<>();
+
+		FileItemFactory itemFactory = new DiskFileItemFactory();
+		ServletFileUpload upload = new ServletFileUpload(itemFactory);
+		String appId = request.getParameter("app_id");
+		outputMap.put("app_id", appId);
+		HashMap<String, Object> hm = new HashMap<>();
+		hm.put("app_id", appId);
+		List<FileItem> toUpload = new ArrayList<>();
+		if (ServletFileUpload.isMultipartContent(request)) {
+			List<FileItem> items = upload.parseRequest(request);
+			for (FileItem item : items) {
+
+				if (item.isFormField()) {
+					hm.put(item.getFieldName(), item.getString());
+				} else {
+					toUpload.add(item);
+				}
+			}
+		}
+
+		long visitorId = hm.get("hdnvisitorId").equals("") ? 0l : Long.parseLong(hm.get("hdnvisitorId").toString());
+		try {
+
+			if (visitorId == 0) {
+				visitorId = lObjConfigDao.AddVisitor(con, hm);
+			} 
+
+			rs.setReturnObject(outputMap);
+
+			rs.setAjaxData("<script>window.location='" + hm.get("callerUrl") + "?a=showVisitors'</script>");
+
+		} catch (Exception e) {
+			writeErrorToDB(e);
+			rs.setHasError(true);
+		}
+		return rs;
+
+	}
+
+	public CustomResultObject showVisitors(HttpServletRequest request, Connection con)
+			throws SQLException, ClassNotFoundException {
+
+		CustomResultObject rs = new CustomResultObject();
+		HashMap<String, Object> outputMap = new HashMap<>();
+		String exportFlag = request.getParameter("exportFlag") == null ? "" : request.getParameter("exportFlag");
+		String DestinationPath = request.getServletContext().getRealPath("BufferedImagesFolder") + delimiter;
+
+		String fromDate = request.getParameter("txtfromdate") == null ? "" : request.getParameter("txtfromdate");
+		String toDate = request.getParameter("txttodate") == null ? "" : request.getParameter("txttodate");
+		String storeId = request.getParameter("storeId") == null ? "" : request.getParameter("storeId");
+
+		String userId = ((HashMap<String, String>) request.getSession().getAttribute("userdetails")).get("user_id");
+		String appId = ((HashMap<String, String>) request.getSession().getAttribute("userdetails")).get("app_id");
+		outputMap.put("app_id", appId);
+
+		// if parameters are blank then set to defaults
+		if (fromDate.equals("")) {
+			fromDate = lObjConfigDao.getDateFromDB(con);
+		}
+		if (toDate.equals("")) {
+			toDate = lObjConfigDao.getDateFromDB(con);
+		}
+
+		outputMap.put("txtfromdate", fromDate);
+		outputMap.put("txttodate", toDate);
+
+		try {
+			String[] colNames = { "visitorId", "visitorname", "address", "EmailId" };
+
+			List<LinkedHashMap<String, Object>> lst = null;
+
+			lst = lObjConfigDao.showVisitors(outputMap, con);
+
+			if (!exportFlag.isEmpty()) {
+				outputMap = getCommonFileGenerator(colNames, lst, exportFlag, DestinationPath, userId, "VisitorEntry");
+			} else {
+
+				Date toDateDate = new SimpleDateFormat("dd/MM/yyyy").parse(fromDate);
+
+				Calendar cal = Calendar.getInstance();
+				cal.setTime(toDateDate);
+				cal.add(Calendar.DATE, -1);
+				toDateDate = cal.getTime();
+
+				toDate = new SimpleDateFormat("dd/MM/yyyy").format(toDateDate);
+				String startOfApplication = "23/01/1992";
+				outputMap.put("ListOfVisitors", lst);
+
+				rs.setViewName("Visitors.jsp");
+				rs.setReturnObject(outputMap);
+			}
+		} catch (Exception e) {
+			writeErrorToDB(e);
+			rs.setHasError(true);
+		}
+		rs.setReturnObject(outputMap);
+		return rs;
+	}
+
+	public CustomResultObject showAddVisitor(HttpServletRequest request, Connection con) {
+		CustomResultObject rs = new CustomResultObject();
+		HashMap<String, Object> outputMap = new HashMap<>();
+
+		long visitorId = request.getParameter("visitorId") == null ? 0L
+				: Long.parseLong(request.getParameter("visitorId"));
+
+		String appId = ((HashMap<String, String>) request.getSession().getAttribute("userdetails")).get("app_id");
+
+		try {
+			if (visitorId != 0) {
+				outputMap.put("visitorDetails", lObjConfigDao.getvisitorDetails(visitorId, con));
+			}
+			outputMap.put("distinctPurposeOfVisist", lObjConfigDao.getDistinctPurposeOfVisitList(con, appId));
+			rs.setViewName("AddVisitor.jsp");
+			rs.setReturnObject(outputMap);
+		} catch (Exception e) {
+			writeErrorToDB(e);
+			rs.setHasError(true);
+		}
+		return rs;
+	}
+
+	public CustomResultObject deleteVisitor(HttpServletRequest request, Connection con) {
+
+		CustomResultObject rs = new CustomResultObject();
+		long visitorId = Long.parseLong(request.getParameter("visitorId"));
+		try {
+
+			rs.setAjaxData(lObjConfigDao.deleteVisitor(visitorId, con));
+
+		} catch (Exception e) {
+			writeErrorToDB(e);
+			rs.setHasError(true);
+		}
+		return rs;
+	}
 
 	
 }

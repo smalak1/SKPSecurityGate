@@ -6447,7 +6447,62 @@ public class ConfigurationDaoImpl extends CommonFunctions {
 				"select * from holiday_master where holiday_id=?",
 				con);
 	}
-	
-	
+	public long AddVisitor(Connection conWithF, HashMap<String, Object> hm) throws SQLException {
 
+		ArrayList<Object> parameters = new ArrayList<>();
+		parameters.add(hm.get("visitorname"));
+		parameters.add( hm.get("address"));
+		parameters.add( hm.get("purpose_of_visit"));		
+		parameters.add( hm.get("remarks"));	
+		parameters.add( hm.get("MobileNo"));	
+		parameters.add( hm.get("EmailId"));	
+		parameters.add( hm.get("app_id"));	
+		
+		
+		String insertQuery = "insert into visitor_entry values (default,?,?,?,?,?,?,sysdate(),?,sysdate(),1)";
+		
+		return insertUpdateDuablDB(insertQuery, parameters, conWithF);
+
+	}
+	
+	
+	
+	public LinkedHashMap<String, String> getvisitorDetails(long VisitorId, Connection con) throws SQLException {
+
+		ArrayList<Object> parameters = new ArrayList<>();
+		parameters.add(VisitorId);
+		return getMap(parameters,
+				"select * from visitor_entry where visitor_id=?", con);
+		
+
+	}
+	
+	public List<LinkedHashMap<String, Object>> showVisitors(HashMap<String, Object> hm, Connection con)
+			throws ClassNotFoundException, SQLException, ParseException {
+		ArrayList<Object> parameters = new ArrayList<>();
+		parameters.add(hm.get("app_id"));
+		parameters.add(getDateASYYYYMMDD(hm.get("txtfromdate").toString()));
+		parameters.add(getDateASYYYYMMDD(hm.get("txttodate").toString()));
+		return getListOfLinkedHashHashMap(parameters,
+				"select visitor_id visitorId,visitor_name visitorname, purpose_of_visit purpose_of_visit, mobile_no MobileNo,email_id EmailId,in_time in_time from visitor_entry where app_id=? and date(in_time) between ? and ? and activate_flag=1 order by in_time desc",
+				con);
+
+	}
+	
+	
+	public String deleteVisitor(long visitorId, Connection conWithF) throws Exception {
+		ArrayList<Object> parameters = new ArrayList<>();
+		parameters.add(visitorId);
+		
+		insertUpdateDuablDB("UPDATE visitor_entry  SET activate_flag=0,updated_date=SYSDATE() WHERE visitor_id=?",
+				parameters, conWithF);
+		return "Visitor deleted Succesfully";
+	}
+	public List<LinkedHashMap<String, Object>> getDistinctPurposeOfVisitList(Connection con, String appId) throws SQLException, ClassNotFoundException 
+	{
+		ArrayList<Object> parameters = new ArrayList<>();
+		parameters.add(appId);
+		return getListOfLinkedHashHashMap(parameters, "select distinct(purpose_of_visit) from visitor_entry where app_id=? and activate_flag=1", con);
+	}
+	
       }

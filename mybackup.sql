@@ -39,7 +39,7 @@ CREATE TABLE `acl_user_role_rlt` (
   `updated_date` datetime DEFAULT NULL,
   PRIMARY KEY (`rlt_pk`),
   KEY `acl_user_role_rlt_user_id_IDX` (`user_id`,`role_id`,`activate_flag`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=89 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=91 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -173,7 +173,7 @@ CREATE TABLE `frm_error_log` (
   `error_message` mediumtext,
   `created_date` datetime DEFAULT NULL,
   PRIMARY KEY (`error_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=79 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=98 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -399,7 +399,7 @@ CREATE TABLE `tbl_user_mst` (
   `aadhar_card_no` bigint(20) DEFAULT NULL,
   PRIMARY KEY (`user_id`),
   KEY `tbl_user_mst_username_IDX` (`username`,`password`,`activate_flag`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=81 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=83 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -421,6 +421,29 @@ CREATE TABLE `trn_checkin_register` (
   PRIMARY KEY (`check_in_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `visitor_entry`
+--
+
+DROP TABLE IF EXISTS `visitor_entry`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `visitor_entry` (
+  `visitor_id` int(11) NOT NULL AUTO_INCREMENT,
+  `visitor_name` varchar(45) NOT NULL,
+  `address` varchar(100) DEFAULT NULL,
+  `purpose_of_visit` varchar(100) DEFAULT NULL,
+  `remarks` varchar(50) DEFAULT NULL,
+  `mobile_no` varchar(100) DEFAULT NULL,
+  `email_id` varchar(45) DEFAULT NULL,
+  `updated_date` datetime DEFAULT NULL,
+  `app_id` bigint(20) NOT NULL,
+  `in_time` datetime DEFAULT NULL,
+  `activate_flag` tinyint(4) DEFAULT NULL,
+  PRIMARY KEY (`visitor_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -431,4 +454,4 @@ CREATE TABLE `trn_checkin_register` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-10-05 13:22:43
+-- Dump completed on 2022-10-07 15:28:16

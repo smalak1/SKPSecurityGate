@@ -62,3 +62,28 @@ elements:
   elementUrl: "?a=showUserDetails"
   orderNo: 1
   childElements: null
+- elementId: 700157
+  elementName: "Visitor"
+  parentElementId: -1
+  elementUrl: ""
+  orderNo: 1
+- elementId: 700158
+  elementName: "Visitor Register"
+  parentElementId: 700157
+  elementUrl: "?a=showVisitors"
+  orderNo: 1
+- elementId: 700160
+  elementName: "Add Visitor"
+  parentElementId: 700157
+  elementUrl: "?a=showAddVisitor"
+  orderNo: 1
+- elementId: 31
+  elementName: "Configurations"
+  parentElementId: -1
+  elementUrl: ""
+  orderNo: 1
+- elementId: 32
+  elementName: "Holiday Master"
+  parentElementId: 31
+  elementUrl: "?a=showHolidayMaster"
+  orderNo: 1

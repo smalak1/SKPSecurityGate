@@ -6444,7 +6444,7 @@ public class ConfigurationDaoImpl extends CommonFunctions {
 		
 		
 		return getMap(parameters,
-				"select * from holiday_master where holiday_id=?",
+				"select *,date_format(holiday_date,'%d/%m/%Y') as formattedHolidateDate from holiday_master where holiday_id=?",
 				con);
 	}
 	public long AddVisitor(Connection conWithF, HashMap<String, Object> hm) throws SQLException {

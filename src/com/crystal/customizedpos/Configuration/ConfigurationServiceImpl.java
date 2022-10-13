@@ -9778,6 +9778,21 @@ public class ConfigurationServiceImpl  extends CommonFunctions
 
 			if (visitorId == 0) {
 				visitorId = lObjConfigDao.AddVisitor(con, hm);
+				
+				
+				String DestinationPath=request.getServletContext().getRealPath("BufferedImagesFolder")+File.separator;
+				if(!toUpload.isEmpty())
+				{
+					for(FileItem f:toUpload)
+					{
+						f.write(new File(DestinationPath+f.getName()));					
+						long attachmentId=cf.uploadFileToDBDual(DestinationPath+f.getName(), con, "Image", visitorId);					
+						Files.copy(Paths.get(DestinationPath+f.getName()), Paths.get(DestinationPath+attachmentId+f.getName()),StandardCopyOption.REPLACE_EXISTING);
+					}
+				}
+				
+				
+				
 			} 
 
 			rs.setReturnObject(outputMap);

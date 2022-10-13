@@ -6485,7 +6485,20 @@ public class ConfigurationDaoImpl extends CommonFunctions {
 		parameters.add(getDateASYYYYMMDD(hm.get("txtfromdate").toString()));
 		parameters.add(getDateASYYYYMMDD(hm.get("txttodate").toString()));
 		return getListOfLinkedHashHashMap(parameters,
-				"select * from visitor_entry where app_id=? and date(in_time) between ? and ? and activate_flag=1 order by in_time desc",
+				"select\r\n"
+				+ "	*\r\n"
+				+ "from\r\n"
+				+ "	visitor_entry ve,\r\n"
+				+ "	tbl_user_mst tum\r\n"
+				+ "where\r\n"
+				+ "	tum.user_id = ve.contact_to_employee\r\n"
+				+ "	and ve.app_id =?\r\n"
+				+ "	and date(in_time) between ? and ?\r\n"
+				+ "	and ve.activate_flag = 1\r\n"
+				+ "order by\r\n"
+				+ "	in_time desc;\r\n"
+				+ "	\r\n"
+				+ "",
 				con);
 
 	}

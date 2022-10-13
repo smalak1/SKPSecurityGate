@@ -173,7 +173,7 @@ CREATE TABLE `frm_error_log` (
   `error_message` mediumtext,
   `created_date` datetime DEFAULT NULL,
   PRIMARY KEY (`error_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=122 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=124 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -438,6 +438,8 @@ CREATE TABLE `visitor_entry` (
   `app_id` bigint(20) NOT NULL,
   `in_time` datetime DEFAULT NULL,
   `activate_flag` tinyint(4) DEFAULT NULL,
+  `contact_to_employee` varchar(100) DEFAULT NULL,
+  `checkout_time` datetime DEFAULT NULL,
   PRIMARY KEY (`visitor_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -451,4 +453,4 @@ CREATE TABLE `visitor_entry` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-10-13 10:32:07
+-- Dump completed on 2022-10-13 11:48:20

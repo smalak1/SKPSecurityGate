@@ -39,6 +39,33 @@ function deleteVisitor(visitorId)
 	  xhttp.send();
 }
 
+
+function checkoutVisitor(visitorId)
+{
+	
+	
+	
+
+	var xhttp = new XMLHttpRequest();
+	  xhttp.onreadystatechange = function() 
+	  {
+	    if (xhttp.readyState == 4 && xhttp.status == 200) 
+	    { 		
+	    	toastr["success"](xhttp.responseText);
+	    	toastr.options = {"closeButton": false,"debug": false,"newestOnTop": false,"progressBar": false,
+	    	  "positionClass": "toast-top-right","preventDuplicates": false,"onclick": null,"showDuration": "1000",
+	    	  "hideDuration": "500","timeOut": "500","extendedTimeOut": "500","showEasing": "swing","hideEasing": "linear",
+	    	  "showMethod": "fadeIn","hideMethod": "fadeOut"}
+	    	
+	    	window.location.reload();
+		}
+	  };
+	  
+	  xhttp.open("GET","?a=checkoutVisitor&visitorId="+visitorId, true);    
+	  xhttp.send();
+}
+
+
 </script>
 
 <c:set var="message" value='${requestScope["outputObject"].get("ListOfVisitors")}' />
@@ -100,20 +127,38 @@ function deleteVisitor(visitorId)
                      <th><b>Purpose Of Visit</b></th>
                      <th><b>Mobile No</b></th>
                      <th><b>Email</b></th>
-                     <th><b>Updated Date</b><th></th><th></th>
+                      <th><b>Contact To Employee</b></th>
+               
+                     <th><b>Checkin Time</b></th>
+                     <th><b>Checkout Time</b></th>
+                     </th><th></th>
                     </tr>
                   </thead>
                   <tbody>
 				<c:forEach items="${message}" var="item">
 					<tr >
-						<td>${item.visitorId}</td>
-						<td>${item.visitorname}</td>
+						<td>${item.visitor_id}</td>
+						<td>${item.visitor_name}</td>
 						<td>${item.purpose_of_visit}</td>
-						<td>${item.MobileNo}</td>
+						<td>${item.mobile_no}</td>
 						<td>${item.EmailId}</td>
-						<td>${item.in_time}</td>
+						<td>${item.ContactToEmployee}</td>
+						<td>${item.checkin_time}</td>
+						<td>${item.checkout_time}</td>
 						
-						<td><button class="btn btn-danger" onclick="deleteVisitor(${item.visitorId})">Delete</button></td>
+						<td>
+						
+						
+						<c:if test="${item.checkout_time eq null}">							  				
+					  				<button class="btn btn-primary" onclick="checkoutVisitor(${item.visitor_id})">Checkout</button>					  
+	  					</c:if>
+						
+						
+						
+						</td>
+						
+						
+						<td><button class="btn btn-danger" onclick="deleteVisitor(${item.visitor_id})">Delete</button></td>
 					</tr>
 				</c:forEach>
 				

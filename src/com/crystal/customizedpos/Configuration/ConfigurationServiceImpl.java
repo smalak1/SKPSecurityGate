@@ -9880,6 +9880,10 @@ public class ConfigurationServiceImpl  extends CommonFunctions
 			if (visitorId != 0) {
 				outputMap.put("visitorDetails", lObjConfigDao.getvisitorDetails(visitorId, con));
 			}
+			
+			
+			
+			outputMap.put("employeeList", lObjConfigDao.getEmployeeMaster(outputMap,con));
 			outputMap.put("distinctPurposeOfVisist", lObjConfigDao.getDistinctPurposeOfVisitList(con, appId));
 			rs.setViewName("AddVisitor.jsp");
 			rs.setReturnObject(outputMap);
@@ -9904,6 +9908,23 @@ public class ConfigurationServiceImpl  extends CommonFunctions
 		}
 		return rs;
 	}
+	
+	public CustomResultObject checkoutVisitor(HttpServletRequest request, Connection con) {
+
+		CustomResultObject rs = new CustomResultObject();
+		long visitorId = Long.parseLong(request.getParameter("visitorId"));
+		try {
+
+			rs.setAjaxData(lObjConfigDao.checkoutVisitor(visitorId, con));
+
+		} catch (Exception e) {
+			writeErrorToDB(e);
+			rs.setHasError(true);
+		}
+		return rs;
+	}
+	
+	
 
 	
 }

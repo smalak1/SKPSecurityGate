@@ -88,6 +88,7 @@
 
 <c:set var="visitorDetails" value='${requestScope["outputObject"].get("visitorDetails")}' />
 <c:set var="distinctPurposeOfVisist" value='${requestScope["outputObject"].get("distinctPurposeOfVisist")}' />
+<c:set var="employeeList" value='${requestScope["outputObject"].get("employeeList")}' />
 
 </head>
 
@@ -223,7 +224,22 @@ function addVisitor()
     </div>
   </div>
   
-  
+  <div class="col-sm-12">
+  	<div class="form-group">
+      <label for="ContactToEmployee">Contact To Employee</label>
+      <select class="form-control" name="ContactToEmployee" id="ContactToEmployee">
+      	
+      	
+      	<c:forEach items="${employeeList}" var="employee">
+			    			    <option value="${employee.user_id}">${employee.name}</option>
+	   </c:forEach>
+      	
+      	
+      	
+      </select> 
+      
+    </div>
+  </div>
   
   
       <div class="contentarea">
@@ -328,7 +344,9 @@ callerUrl.value=(arr[0]+"//"+arr[1]+arr[2]+"/"+arr[3]+"/");
     photo = document.getElementById('photo');
     startbutton = document.getElementById('startbutton');
 
-    navigator.mediaDevices.getUserMedia({video: true, audio: false})
+    navigator.mediaDevices.getUserMedia({video: {
+        facingMode: 'environment'
+    }, audio: false})
     .then(function(stream) {
       video.srcObject = stream;
       video.play();

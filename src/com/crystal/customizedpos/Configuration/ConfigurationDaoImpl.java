@@ -6456,10 +6456,11 @@ public class ConfigurationDaoImpl extends CommonFunctions {
 		parameters.add( hm.get("remarks"));	
 		parameters.add( hm.get("MobileNo"));	
 		parameters.add( hm.get("EmailId"));	
-		parameters.add( hm.get("app_id"));	
+		parameters.add( hm.get("app_id"));
+		parameters.add( hm.get("ContactToEmployee"));
 		
 		
-		String insertQuery = "insert into visitor_entry values (default,?,?,?,?,?,?,sysdate(),?,sysdate(),1)";
+		String insertQuery = "insert into visitor_entry values (default,?,?,?,?,?,?,sysdate(),?,sysdate(),1,?,null)";
 		
 		return insertUpdateDuablDB(insertQuery, parameters, conWithF);
 
@@ -6484,7 +6485,7 @@ public class ConfigurationDaoImpl extends CommonFunctions {
 		parameters.add(getDateASYYYYMMDD(hm.get("txtfromdate").toString()));
 		parameters.add(getDateASYYYYMMDD(hm.get("txttodate").toString()));
 		return getListOfLinkedHashHashMap(parameters,
-				"select visitor_id visitorId,visitor_name visitorname, purpose_of_visit purpose_of_visit, mobile_no MobileNo,email_id EmailId,in_time in_time from visitor_entry where app_id=? and date(in_time) between ? and ? and activate_flag=1 order by in_time desc",
+				"select * from visitor_entry where app_id=? and date(in_time) between ? and ? and activate_flag=1 order by in_time desc",
 				con);
 
 	}
@@ -6494,10 +6495,23 @@ public class ConfigurationDaoImpl extends CommonFunctions {
 		ArrayList<Object> parameters = new ArrayList<>();
 		parameters.add(visitorId);
 		
-		insertUpdateDuablDB("UPDATE visitor_entry  SET activate_flag=0,updated_date=SYSDATE() WHERE visitor_id=?",
+		insertUpdateDuablDB("UPDATE visitor_entry  SET activate_flag=0 WHERE visitor_id=?",
 				parameters, conWithF);
 		return "Visitor deleted Succesfully";
 	}
+	
+	public String checkoutVisitor(long visitorId, Connection conWithF) throws Exception {
+		ArrayList<Object> parameters = new ArrayList<>();
+		parameters.add(visitorId);
+		
+		insertUpdateDuablDB("UPDATE visitor_entry  SET checkout_time=sysdate() WHERE visitor_id=?",
+				parameters, conWithF);
+		return "Visitor deleted Succesfully";
+	}
+	
+	
+	
+	
 	public List<LinkedHashMap<String, Object>> getDistinctPurposeOfVisitList(Connection con, String appId) throws SQLException, ClassNotFoundException 
 	{
 		ArrayList<Object> parameters = new ArrayList<>();

@@ -128,7 +128,6 @@ function checkoutVisitor(visitorId)
                      <th><b>Mobile No</b></th>
                      <th><b>Email</b></th>
                       <th><b>Contact To Employee</b></th>
-               
                      <th><b>Checkin Time</b></th>
                      <th><b>Checkout Time</b></th>
                      </th><th></th>
@@ -141,8 +140,8 @@ function checkoutVisitor(visitorId)
 						<td>${item.visitor_name}</td>
 						<td>${item.purpose_of_visit}</td>
 						<td>${item.mobile_no}</td>
-						<td>${item.EmailId}</td>
-						<td>${item.ContactToEmployee}</td>
+						<td>${item.email_id}</td>
+						<td>${item.name}</td>
 						<td>${item.checkin_time}</td>
 						<td>${item.checkout_time}</td>
 						

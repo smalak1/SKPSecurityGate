@@ -92,7 +92,7 @@ function deleteAttachment(id)
   <div class="col-sm-6">
   	<div class="form-group">
       <label for="email">Holiday Date</label>
-      <input type="text" class="form-control" id="txtholidaydate" readonly value="${holidayDetails.holiday_date}"  name="txtholidaydate">     
+      <input type="text" class="form-control" id="txtholidaydate" readonly value="${holidayDetails.formattedHolidateDate}"  name="txtholidaydate">     
     </div>
   </div>
   

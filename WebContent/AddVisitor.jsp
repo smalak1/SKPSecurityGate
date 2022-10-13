@@ -244,7 +244,15 @@ function addVisitor()
   
   
   
-  
+  <c:if test="${action ne 'Update'}">
+	<div class="col-sm-12" align="center">
+  		<div class="form-group">
+			<button class="btn btn-success" type="button" onclick='addVisitor()'>Save</button>
+			<button class="btn btn-danger" type="reset" onclick='window.location="?a=showVisitors"'>Cancel</button>
+		</div>
+  	</div>
+		
+  </c:if>
   
 		
 		

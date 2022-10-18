@@ -6875,8 +6875,9 @@ public class ConfigurationServiceImpl  extends CommonFunctions
 		try
 		{	
 			if(employeeId!=0) {outputMap.put("employeeDetails", lObjConfigDao.getEmployeeDetails(employeeId,con));}
-			//List<LinkedHashMap<String, Object>> lst = lObjConfigDao.getfirmMaster(outputMap,con);
-			//outputMap.put("listfirmData", lst);
+			
+
+			outputMap.put("employeeList", lObjConfigDao.getEmployeeMaster(outputMap, con));
 			rs.setViewName("AddEmployee.jsp");	
 			rs.setReturnObject(outputMap);
 			
@@ -9923,9 +9924,126 @@ public class ConfigurationServiceImpl  extends CommonFunctions
 		}
 		return rs;
 	}
-	
-	
+	public CustomResultObject showSupervisorSubmitLeave(HttpServletRequest request, Connection con) {
+		CustomResultObject rs = new CustomResultObject();
+		HashMap<String, Object> outputMap = new HashMap<>();
 
+		long employeeId = request.getParameter("employeeId") == null ? 0L
+				: Long.parseLong(request.getParameter("employeeId"));
+
+		String appId = ((HashMap<String, String>) request.getSession().getAttribute("userdetails")).get("app_id");
+		String userId = ((HashMap<String, String>) request.getSession().getAttribute("userdetails")).get("user_id");
+		
+		
+		outputMap.put("parent_user_id", userId);
+
+		try {
+		
+			
+			
+			outputMap.put("todaysDate", lObjConfigDao.getDateFromDB(con));
+			outputMap.put("employeeList", lObjConfigDao.getEmployeeMasterWithSupervisorId(outputMap,con));
+			rs.setViewName("SupervisorSubmitLeave.jsp");
+			rs.setReturnObject(outputMap);
+		} catch (Exception e) {
+			writeErrorToDB(e);
+			rs.setHasError(true);
+		}
+		return rs;
+	}
+
+	public CustomResultObject saveSupervisorSubmitLeave(HttpServletRequest request, Connection con)
+			throws SQLException, ClassNotFoundException {
+
+		CustomResultObject rs = new CustomResultObject();
+		HashMap<String, Object> outputMap = new HashMap<>();
+		String exportFlag = request.getParameter("exportFlag") == null ? "" : request.getParameter("exportFlag");
+		String DestinationPath = request.getServletContext().getRealPath("BufferedImagesFolder") + delimiter;
+		
+		String leaveDate=request.getParameter("txtleaveDate");
+		String empId=request.getParameter("employee_id");
+		String reason=request.getParameter("reason");
+		
+
+		String userId = ((HashMap<String, String>) request.getSession().getAttribute("userdetails")).get("user_id");
+		String appId = ((HashMap<String, String>) request.getSession().getAttribute("userdetails")).get("app_id");
+		outputMap.put("app_id", appId);
+		
+		
+		
+		outputMap.put("employee_id", empId);
+		outputMap.put("supervisor_id", userId);
+		outputMap.put("txtleaveDate", leaveDate);
+		outputMap.put("reason", reason);
+		
+		
+		
+
+		try {
+
+			lObjConfigDao.saveSupervisorSubmitLeave(con, outputMap);
+			rs.setAjaxData("<script>alert('Leave Saved Successfully');window.location='?a=showLeaveRegister'</script>");
+			rs.setReturnObject(outputMap);
+	
+		} catch (Exception e) {
+			writeErrorToDB(e);
+			rs.setHasError(true);
+		}
+		
+		return rs;
+	}
+	
+	public CustomResultObject showLeaveRegister(HttpServletRequest request,Connection con) throws SQLException
+	{
+		CustomResultObject rs=new CustomResultObject();
+		HashMap<String, Object> outputMap=new HashMap<>();
+		String exportFlag= request.getParameter("exportFlag")==null?"":request.getParameter("exportFlag");
+		String DestinationPath=request.getServletContext().getRealPath("BufferedImagesFolder")+delimiter;
+		String userId=((HashMap<String, String>) request.getSession().getAttribute("userdetails")).get("user_id");
+		String fromDate = request.getParameter("txtfromdate") == null ? "" : request.getParameter("txtfromdate");
+		String toDate = request.getParameter("txttodate") == null ? "" : request.getParameter("txttodate");
+		
+		if (fromDate.equals("")) {
+			fromDate = lObjConfigDao.getDateFromDB(con);
+		}
+		if (toDate.equals("")) {
+			toDate = lObjConfigDao.getDateFromDB(con);
+		}
+		
+		
+		try
+		{
+			String [] colNames= {"EmployeeName","reason","leave_date"}; // change according to dao return
+			List<LinkedHashMap<String, Object>> lst=lObjConfigDao.getLeaves(fromDate,toDate,con);
+			outputMap.put("ListOfEmployees", lst);
+			outputMap.put("txtfromdate", fromDate);
+
+			outputMap.put("txttodate", toDate);
+
+			
+			if(!exportFlag.isEmpty())
+			{
+				outputMap = getCommonFileGenerator(colNames,lst,exportFlag,DestinationPath,userId,"LeaveRegister");
+			}
+		else
+			{
+				
+				rs.setViewName("LeaveRegister.jsp");
+				
+			}	
+			
+			
+
+		}
+		catch (Exception e)
+		{
+			writeErrorToDB(e);
+			rs.setHasError(true);
+		}		
+		rs.setReturnObject(outputMap);
+
+		return rs;
+	}
 	
 }
 

@@ -87,3 +87,18 @@ elements:
   parentElementId: 31
   elementUrl: "?a=showHolidayMaster"
   orderNo: 1
+- elementId: 33
+  elementName: "Supervisor Submit Leave"
+  parentElementId: 700165
+  elementUrl: "?a=showSupervisorSubmitLeave"
+  orderNo: 1
+- elementId: 34
+  elementName: "Reports"
+  parentElementId: -1
+  elementUrl: ""
+  orderNo: 1
+- elementId: 35
+  elementName: "Leave Register"
+  parentElementId: 34
+  elementUrl: "?a=showLeaveRegister"
+  orderNo: 1

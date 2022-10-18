@@ -5,6 +5,8 @@
 
 
 <c:set var="employeeDetails" value='${requestScope["outputObject"].get("employeeDetails")}' />
+<c:set var="employeeList" value='${requestScope["outputObject"].get("employeeList")}' />
+
 
    
 
@@ -83,6 +85,23 @@ function addEmployee()
   
       
   
+  <div class="col-sm-12">
+  	<div class="form-group">
+      <label for="ParentUserId">Supervisor Name</label>
+      <select class="form-control" name="parent_user_id" id="parent_user_id">
+      	
+      	
+      	<c:forEach items="${employeeList}" var="employee">
+			    			    <option value="${employee.user_id}">${employee.name}</option>
+	   </c:forEach>
+      	
+      	
+      	
+      </select> 
+      
+    </div>
+  </div>
+  
   <div class="col-sm-12" align="center">
   	<div class="form-group">
       <button class="btn btn-success" type="button" onclick='addEmployee()'>Save</button>
@@ -114,6 +133,8 @@ function addEmployee()
 <c:if test="${employeeDetails.user_id ne null}">
 	
 	document.getElementById("divTitle").innerHTML="Update Employee";
+	
+	document.getElementById('parent_user_id').value='${employeeDetails.parent_user_id}';
 </c:if>
 	
 	

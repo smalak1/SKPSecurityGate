@@ -3578,10 +3578,22 @@ public class ConfigurationDaoImpl extends CommonFunctions {
 			throws ClassNotFoundException, SQLException {
 		ArrayList<Object> parameters = new ArrayList<>();
 		return getListOfLinkedHashHashMap(parameters,
-				 "select	* from tbl_user_mst user"
+				 "select	*,tum2.name supervisorName from tbl_user_mst user left outer join  tbl_user_mst tum2 on tum2.user_id=user.parent_user_id "
 						+ " where user.activate_flag = 1 ",
 				con);
 	}
+	
+	public List<LinkedHashMap<String, Object>> getEmployeeMasterWithSupervisorId(HashMap<String, Object> hm,Connection con)
+			throws ClassNotFoundException, SQLException {
+		ArrayList<Object> parameters = new ArrayList<>();
+		parameters.add(hm.get("parent_user_id"));
+		return getListOfLinkedHashHashMap(parameters,
+				 "select	*,tum2.name supervisorName from tbl_user_mst user, tbl_user_mst tum2"
+						+ " where user.activate_flag = 1 and tum2.user_id=user.parent_user_id and user.parent_user_id=?",
+				con);
+	}
+	
+	
 
 	public String deleteEmployee(long employeeId, Connection conWithF) throws Exception {
 		ArrayList<Object> parameters = new ArrayList<>();
@@ -3599,11 +3611,12 @@ public class ConfigurationDaoImpl extends CommonFunctions {
 		parameters.add(Long.parseLong(hm.get("MobileNumber").toString()));
 		parameters.add(hm.get("email").toString());
 		parameters.add(hm.get("AadharCardNo").toString());
+		parameters.add(hm.get("parent_user_id").toString());
 		
 		parameters.add(employeeId);
 
 		insertUpdateDuablDB(
-				"UPDATE tbl_user_mst  SET username=?, name = ?,updated_date=SYSDATE(),mobile=?,email=?,aadhar_card_no=? WHERE user_id=?",
+				"UPDATE tbl_user_mst  SET username=?, name = ?,updated_date=SYSDATE(),mobile=?,email=?,aadhar_card_no=?,parent_user_id=? WHERE user_id=?",
 				parameters, conWithF);
 		return "Employee Updated Succesfully";
 
@@ -3619,7 +3632,8 @@ public class ConfigurationDaoImpl extends CommonFunctions {
 		
 		parameters.add(Long.parseLong(hm.get("app_id").toString()));
 		parameters.add(hm.get("AadharCardNo").toString());
-		String insertQuery = "insert into tbl_user_mst values (default,?,?,sysdate(),null,1,?,?,?,?,?)";
+		parameters.add(Long.parseLong(hm.get("parent_user_id").toString()));
+		String insertQuery = "insert into tbl_user_mst values (default,?,?,sysdate(),null,1,?,?,?,?,?,?)";
 		return insertUpdateDuablDB(insertQuery, parameters, conWithF);
 	}
 
@@ -6532,4 +6546,30 @@ public class ConfigurationDaoImpl extends CommonFunctions {
 		return getListOfLinkedHashHashMap(parameters, "select distinct(purpose_of_visit) from visitor_entry where app_id=? and activate_flag=1", con);
 	}
 	
+	
+	
+	
+	public long saveSupervisorSubmitLeave(Connection conWithF, HashMap<String, Object> hm) throws SQLException, ParseException {
+
+		ArrayList<Object> parameters = new ArrayList<>();
+		parameters.add(hm.get("employee_id"));
+		parameters.add( hm.get("supervisor_id"));
+		parameters.add( hm.get("reason"));		
+		parameters.add( getDateASYYYYMMDD(hm.get("txtleaveDate").toString()));	
+		
+		
+		String insertQuery = "insert into trn_leave_register values (default,?,?,?,?)";
+		
+		return insertUpdateDuablDB(insertQuery, parameters, conWithF);
+
+	}
+	public List<LinkedHashMap<String, Object>> getLeaves(String fromDate,String toDate,Connection con)
+			throws SQLException, ClassNotFoundException, ParseException {
+		ArrayList<Object> parameters = new ArrayList<>();
+		parameters.add(getDateASYYYYMMDD(fromDate));
+		parameters.add(getDateASYYYYMMDD(toDate));
+		return getListOfLinkedHashHashMap(parameters,
+				"select *,tum2.name supervisorName from trn_leave_register tlr,tbl_user_mst tum,tbl_user_mst tum2 where tum.user_id=tlr.employee_id and tum2.user_id=tlr.supervisor_id and tlr.leave_date between ? and ? order by leave_date desc" ,
+				con);
+	}
       }

@@ -62,6 +62,7 @@ public class ExecuteSqlFile {
 					
 					hm.put("MobileNumber", "7600787650");
 					hm.put("email", "crystaldevelopers2017@gmail.com");
+					hm.put("parent_user_id", "4");
 					
 					hm.put("txtfirm", "1");
 					hm.put("AadharCardNo", "1234567890");

@@ -102,3 +102,8 @@ elements:
   parentElementId: 34
   elementUrl: "?a=showLeaveRegister"
   orderNo: 1
+- elementId: 36
+  elementName: "Shift Master"
+  parentElementId: 700165
+  elementUrl: "?a=showShiftMaster"
+  orderNo: 1

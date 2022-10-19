@@ -10044,6 +10044,136 @@ public class ConfigurationServiceImpl  extends CommonFunctions
 
 		return rs;
 	}
-	
+	public CustomResultObject showShiftMaster(HttpServletRequest request, Connection con) {
+		CustomResultObject rs = new CustomResultObject();
+		HashMap<String, Object> outputMap = new HashMap<>();
+
+		String exportFlag = request.getParameter("exportFlag") == null ? "" : request.getParameter("exportFlag");
+		String DestinationPath = request.getServletContext().getRealPath("BufferedImagesFolder") + delimiter;
+		String userId = ((HashMap<String, String>) request.getSession().getAttribute("userdetails")).get("user_id");
+		String appId = ((HashMap<String, String>) request.getSession().getAttribute("userdetails")).get("app_id");
+
+		try {
+
+			String[] colNames = { "shift_id", "shift_name", "from_time", "to_time", "activate_flag", "updated_by",
+					"updated_date" };
+			outputMap.put("app_id", appId);
+			List<LinkedHashMap<String, Object>> lst = lObjConfigDao.getShiftMaster(outputMap, con);
+
+			if (!exportFlag.isEmpty()) {
+				outputMap = getCommonFileGenerator(colNames, lst, exportFlag, DestinationPath, userId,
+						"CategoryMaster");
+			} else {
+				outputMap.put("ListOfShift", lst);
+				rs.setViewName("ShiftMaster.jsp");
+				rs.setReturnObject(outputMap);
+			}
+		} catch (Exception e) {
+			writeErrorToDB(e);
+			rs.setHasError(true);
+		}
+		rs.setReturnObject(outputMap);
+		return rs;
+
+	}
+	public CustomResultObject showAddShift(HttpServletRequest request, Connection connections) {
+		CustomResultObject rs = new CustomResultObject();
+		HashMap<String, Object> outputMap = new HashMap<>();
+
+		long shiftId = request.getParameter("shiftId") == null ? 0L : Long.parseLong(request.getParameter("shiftId"));
+		outputMap.put("shift_id", shiftId);
+		String appId = ((HashMap<String, String>) request.getSession().getAttribute("userdetails")).get("app_id");
+		outputMap.put("app_id", appId);
+		try {
+			if (shiftId != 0) {
+				outputMap.put("ShiftDetails", lObjConfigDao.getShiftDetails(outputMap, connections));
+			}
+			outputMap.put("lisitOfShift", lObjConfigDao.getShiftMaster(outputMap, connections));
+			rs.setViewName("AddShift.jsp");
+			rs.setReturnObject(outputMap);
+		} catch (Exception e) {
+			writeErrorToDB(e);
+			rs.setHasError(true);
+		}
+		return rs;
+	}
+
+	public CustomResultObject addShift(HttpServletRequest request, Connection con) throws Exception {
+		CustomResultObject rs = new CustomResultObject();
+		HashMap<String, Object> outputMap = new HashMap<>();
+
+		FileItemFactory itemFacroty = new DiskFileItemFactory();
+		ServletFileUpload upload = new ServletFileUpload(itemFacroty);
+		// String webInfPath = cf.getPathForAttachments();
+		String DestinationPath = request.getServletContext().getRealPath("BufferedImagesFolder") + File.separator;
+
+		HashMap<String, Object> hm = new HashMap<>();
+
+		List<FileItem> toUpload = new ArrayList<>();
+		if (ServletFileUpload.isMultipartContent(request)) {
+			List<FileItem> items = upload.parseRequest(request);
+			for (FileItem item : items) {
+
+				if (item.isFormField()) {
+					hm.put(item.getFieldName(), item.getString());
+				} else {
+					toUpload.add(item);
+				}
+			}
+		}
+
+		String shift_name = hm.get("shift_name").toString();
+		String from_time_hour = hm.get("from_time_hour").toString();
+		String from_time_minute = hm.get("from_time_minute").toString();
+		String to_time_hour = hm.get("to_time_hour").toString();
+		String to_time_minute = hm.get("to_time_minute").toString();
+		String late_shift_cutoff = hm.get("late_shift_cutoff").toString();
+
+		hm.put("shift_name", shift_name);
+		hm.put("from_time_hour", from_time_hour);
+		hm.put("from_time_minute", from_time_minute);
+		hm.put("to_time_hour", to_time_hour);
+		hm.put("to_time_minute", to_time_minute);
+		hm.put("late_shift_cutoff", late_shift_cutoff);
+
+		String appId = hm.get("app_id").toString();
+		hm.put("app_id", appId);
+
+		String userId = ((HashMap<String, String>) request.getSession().getAttribute("userdetails")).get("user_id");
+		hm.put("user_id", userId);
+
+		long hdnShiftId = hm.get("hdnShiftId").equals("") ? 0l : Long.parseLong(hm.get("hdnShiftId").toString());
+		try {
+
+			if (hdnShiftId == 0) {
+				hdnShiftId = lObjConfigDao.addShift(con, hm);
+			} else {				
+				lObjConfigDao.updateShift(hdnShiftId,shift_name,from_time_hour,from_time_minute,to_time_hour,to_time_minute,userId,late_shift_cutoff,con);
+			}
+
+			rs.setReturnObject(outputMap);
+
+			rs.setAjaxData("<script>window.location='" + hm.get("callerUrl") + "?a=showShiftMaster'</script>");
+
+		} catch (Exception e) {
+			writeErrorToDB(e);
+			rs.setHasError(true);
+		}
+		return rs;
+	}
+
+	public CustomResultObject deleteShift(HttpServletRequest request, Connection con) {
+		CustomResultObject rs = new CustomResultObject();
+		long shiftId = Integer.parseInt(request.getParameter("shiftId"));
+
+		try {
+			rs.setAjaxData(lObjConfigDao.deleteShift(shiftId, con));
+
+		} catch (Exception e) {
+			writeErrorToDB(e);
+			rs.setHasError(true);
+		}
+		return rs;
+	}
 }
 

@@ -39,7 +39,7 @@ CREATE TABLE `acl_user_role_rlt` (
   `updated_date` datetime DEFAULT NULL,
   PRIMARY KEY (`rlt_pk`),
   KEY `acl_user_role_rlt_user_id_IDX` (`user_id`,`role_id`,`activate_flag`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=94 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=95 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -173,7 +173,7 @@ CREATE TABLE `frm_error_log` (
   `error_message` mediumtext,
   `created_date` datetime DEFAULT NULL,
   PRIMARY KEY (`error_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=181 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=182 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -359,6 +359,27 @@ CREATE TABLE `mst_services` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Table structure for table `shift_master`
+--
+
+DROP TABLE IF EXISTS `shift_master`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `shift_master` (
+  `shift_id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `shift_name` varchar(100) DEFAULT NULL,
+  `from_time` time DEFAULT NULL,
+  `to_time` time DEFAULT NULL,
+  `activate_flag` tinyint(4) DEFAULT NULL,
+  `app_id` bigint(20) DEFAULT NULL,
+  `updated_by` bigint(20) DEFAULT NULL,
+  `updated_date` datetime DEFAULT NULL,
+  `late_shift_cutoff` int(20) DEFAULT NULL,
+  PRIMARY KEY (`shift_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
 -- Table structure for table `tbl_attachment_mst`
 --
 
@@ -400,7 +421,7 @@ CREATE TABLE `tbl_user_mst` (
   `parent_user_id` bigint(11) DEFAULT NULL,
   PRIMARY KEY (`user_id`),
   KEY `tbl_user_mst_username_IDX` (`username`,`password`,`activate_flag`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=89 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=90 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -471,4 +492,4 @@ CREATE TABLE `visitor_entry` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-10-18 12:36:49
+-- Dump completed on 2022-10-19 13:21:14

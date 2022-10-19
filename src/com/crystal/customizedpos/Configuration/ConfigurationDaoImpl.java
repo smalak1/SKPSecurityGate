@@ -6572,4 +6572,83 @@ public class ConfigurationDaoImpl extends CommonFunctions {
 				"select *,tum2.name supervisorName from trn_leave_register tlr,tbl_user_mst tum,tbl_user_mst tum2 where tum.user_id=tlr.employee_id and tum2.user_id=tlr.supervisor_id and tlr.leave_date between ? and ? order by leave_date desc" ,
 				con);
 	}
+	
+	public LinkedHashMap<String, String> getShiftDetails(HashMap<String, Object> hm, Connection con) throws SQLException {
+		ArrayList<Object> parameters = new ArrayList<>();
+		parameters.add(hm.get("shift_id"));
+		
+		
+		return getMap(parameters,
+				"select\r\n"
+				+ "*,	TIME_FORMAT(from_time, '%H') fromHour,\r\n"
+				+ "	minute(from_time) fromMinute,\r\n"
+				+ "	TIME_FORMAT(to_time, '%H') toHour,\r\n"
+				+ "	minute(to_time) toMinute\r\n"
+				+ "from\r\n"
+				+ "	shift_master where shift_id=? ",
+				con);
+	}
+
+	
+	public List<LinkedHashMap<String, Object>> getShiftMaster(HashMap<String, Object> hm,Connection con)
+			throws ClassNotFoundException, SQLException {
+		ArrayList<Object> parameters = new ArrayList<>();
+		parameters.add(hm.get("app_id"));
+		return getListOfLinkedHashHashMap(parameters,
+				"select * from shift_master where app_id=? and activate_flag=1",
+				con);
+
+
+	}
+	public long addShift(Connection conWithF, HashMap<String, Object> hm) throws SQLException {
+
+		ArrayList<Object> parameters = new ArrayList<>();
+		
+		parameters.add(hm.get("shift_name"));
+		
+		parameters.add(hm.get("from_time_hour")+":"+hm.get("from_time_minute"));
+		parameters.add(hm.get("to_time_hour")+":"+hm.get("to_time_minute"));
+		
+		
+		
+		parameters.add(hm.get("app_id"));
+        parameters.add(hm.get("user_id"));
+        parameters.add(hm.get("late_shift_cutoff"));
+        
+		//String insertQuery = "insert into shift_master values (default,?,?,?,?,?,1,?,?,sysdate()) ";
+		String insertQuery = "insert into shift_master values (default,?,?,?,1,?,?,sysdate(),?) ";
+		
+		return insertUpdateDuablDB(insertQuery, parameters, conWithF);
+
+	}
+	
+	public String updateShift(long shiftId,String shift_name,String from_time_hour,String from_time_minute,String to_time_hour,String to_time_minute,String userId,String late_shift_cutoff,Connection con) throws Exception 
+	{
+		ArrayList<Object> parameters = new ArrayList<>();
+		
+		
+		parameters.add(shift_name);
+		parameters.add(from_time_hour+":"+from_time_minute);
+		
+		parameters.add(to_time_hour+":"+to_time_minute);
+		
+		
+		
+		parameters.add(userId);
+		
+		parameters.add(late_shift_cutoff);
+              parameters.add(shiftId);
+
+
+		insertUpdateDuablDB("update shift_master set shift_name=?,from_time=?,to_time=?,updated_by=?,updated_date=sysdate(),late_shift_cutoff=? where shift_id=?",parameters, con);
+		return "Shift Updated Succesfully";
+	}
+	public String deleteShift(long shiftId, Connection conWithF) throws Exception {
+		ArrayList<Object> parameters = new ArrayList<>();
+		parameters.add(shiftId);
+		insertUpdateDuablDB("UPDATE shift_master  SET activate_flag=0,updated_date=SYSDATE() WHERE shift_id=?",
+				parameters, conWithF);
+		return "Shift Deleted Succesfully";
+	}
+	
       }

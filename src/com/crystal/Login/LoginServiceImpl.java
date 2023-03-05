@@ -113,7 +113,7 @@ public class LoginServiceImpl extends CommonFunctions {
 				
 
 				outputMap.put("todaysDate", getDateFromDB(con));
-				rs.setViewName("index.jsp");
+				rs.setViewName("../index.jsp");
 			} else {
 				rs.setViewName("login.jsp");
 			}

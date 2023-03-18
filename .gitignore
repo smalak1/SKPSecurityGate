@@ -1,3 +1,4 @@
 *.class
 *.project
-/src/com/crystal/framework/Frameworkpackage
+/src/com/crystal/Frameworkpackage
+/WebContent/frameworkjsps

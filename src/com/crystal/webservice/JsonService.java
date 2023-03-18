@@ -23,9 +23,9 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import com.crystal.basecontroller.BaseController;
-import com.crystal.framework.Frameworkpackage.CommonFunctions;
-import com.crystal.framework.Frameworkpackage.ControllerServiceImpl;
-import com.crystal.framework.Frameworkpackage.FrmActionService;
+import com.crystal.Frameworkpackage.CommonFunctions;
+import com.crystal.Frameworkpackage.ControllerServiceImpl;
+import com.crystal.Frameworkpackage.FrmActionService;
 import com.fasterxml.jackson.core.JsonGenerationException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;

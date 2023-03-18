@@ -14,7 +14,7 @@ import com.crystal.Login.LoginDaoImpl;
 import com.crystal.Login.LoginServiceImpl;
 import com.crystal.customizedpos.Configuration.ConfigurationDaoImpl;
 import com.crystal.customizedpos.Configuration.ConfigurationServiceImpl;
-import com.crystal.framework.Frameworkpackage.CommonFunctions;
+import com.crystal.Frameworkpackage.CommonFunctions;
 
 public class ExecuteSqlFile {
 

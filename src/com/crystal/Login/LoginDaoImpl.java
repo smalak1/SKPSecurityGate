@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import com.crystal.framework.Frameworkpackage.CommonFunctions;
+import com.crystal.Frameworkpackage.CommonFunctions;
 
 
 public class LoginDaoImpl  extends CommonFunctions

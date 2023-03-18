@@ -9,7 +9,7 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.crystal.framework.Frameworkpackage.DeploymentHelper;
+import com.crystal.Frameworkpackage.DeploymentHelper;
 import com.jcraft.jsch.JSchException;
 import com.jcraft.jsch.SftpException;
 

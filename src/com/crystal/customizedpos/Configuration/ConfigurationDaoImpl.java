@@ -13,7 +13,7 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 
-import com.crystal.framework.Frameworkpackage.CommonFunctions;
+import com.crystal.Frameworkpackage.CommonFunctions;
 
 
 public class ConfigurationDaoImpl extends CommonFunctions {

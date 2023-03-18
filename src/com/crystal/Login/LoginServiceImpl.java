@@ -14,8 +14,8 @@ import com.crystal.basecontroller.BaseController;
 
 import com.crystal.customizedpos.Configuration.ConfigurationDaoImpl;
 import com.crystal.customizedpos.Configuration.ConfigurationServiceImpl;
-import com.crystal.framework.Frameworkpackage.CommonFunctions;
-import com.crystal.framework.Frameworkpackage.CustomResultObject;
+import com.crystal.Frameworkpackage.CommonFunctions;
+import com.crystal.Frameworkpackage.CustomResultObject;
 
 
 public class LoginServiceImpl extends CommonFunctions {

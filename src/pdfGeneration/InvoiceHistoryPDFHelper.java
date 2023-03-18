@@ -11,7 +11,7 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 
-import com.crystal.framework.Frameworkpackage.CommonFunctions;
+import com.crystal.Frameworkpackage.CommonFunctions;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Element;

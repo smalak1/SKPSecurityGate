@@ -45,7 +45,7 @@ function addEmployee()
 <form id="frm" action="?a=addEmployee" method="post" enctype="multipart/form-data" accept-charset="UTF-8">
 <div class="row">
 	
-  <div class="col-sm-12">
+  <div class="col-sm-3">
   	<div class="form-group">
       <label for="EmployeeName">Employee Name </label>
       <input type="text" class="form-control" id="EmployeeName" value="${employeeDetails.name}" name="EmployeeName" placeholder="Employee Name">
@@ -53,7 +53,7 @@ function addEmployee()
     </div>
   </div> 
   
-  <div class="col-sm-12">
+  <div class="col-sm-3">
   	<div class="form-group">
       <label for="EmployeeName">User Name</label>
       <input type="text" class="form-control" id="username" value="${employeeDetails.username}" name="username" placeholder="Username">
@@ -62,21 +62,21 @@ function addEmployee()
   </div>
  
   
-  <div class="col-sm-12">
+  <div class="col-sm-3">
   	<div class="form-group">
       <label for="MobileNumber">Mobile Number *</label>
       <input type="text" class="form-control" id="MobileNumber" value="${employeeDetails.mobile}" name="MobileNumber" placeholder="Mobile Number" onkeypress="digitsOnly(event)" maxlength="10" required>
     </div>
   </div>
   
-    <div class="col-sm-12">
+    <div class="col-sm-3">
   	<div class="form-group">
       <label for="AadharCardNo">Aadhar Card No</label>
       <input type="text" class="form-control" id="AadharCardNo" value="${employeeDetails.aadhar_card_no}" name="AadharCardNo" placeholder="Aadhar Card No" onkeypress="digitsOnly(event)" maxlength="10" required>
     </div>
   </div>
   
-   <div class="col-sm-12">
+   <div class="col-sm-3">
   	<div class="form-group">
       <label for="MobileNumber">Email</label>
       <input type="text" class="form-control" id="email" value="${employeeDetails.email}" name="email" placeholder="Email"  required>
@@ -85,7 +85,7 @@ function addEmployee()
   
       
   
-  <div class="col-sm-12">
+  <div class="col-sm-3">
   	<div class="form-group">
       <label for="ParentUserId">Supervisor Name</label>
       <select class="form-control" name="parent_user_id" id="parent_user_id">
@@ -94,13 +94,19 @@ function addEmployee()
       	<c:forEach items="${employeeList}" var="employee">
 			    			    <option value="${employee.user_id}">${employee.name}</option>
 	   </c:forEach>
-      	
-      	
-      	
-      </select> 
+      	</select> 
       
     </div>
   </div>
+  
+      	 <div class="col-sm-3">
+  	<div class="form-group">
+      <label for="QrCode">Qr Code</label>
+      <input type="text" class="form-control" id="Qr Code" value="${employeeDetails.qr_code}" name="QrCode" placeholder="Qr Code" >
+    </div>
+  </div>
+      	
+      
   
   <div class="col-sm-12" align="center">
   	<div class="form-group">

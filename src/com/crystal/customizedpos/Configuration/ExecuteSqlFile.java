@@ -24,7 +24,6 @@ public class ExecuteSqlFile {
 		    try {
 				  CommonFunctions cf = new CommonFunctions();
 			    cf.initializeApplication(new Class[] {ConfigurationServiceImpl.class,LoginServiceImpl.class});
-				  
 				
 			      DriverManager.registerDriver(new com.mysql.jdbc.Driver());
 			      String mysqlUrl = CommonFunctions.url+":"+CommonFunctions.port;

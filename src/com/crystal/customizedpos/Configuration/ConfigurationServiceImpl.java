@@ -521,7 +521,7 @@ public class ConfigurationServiceImpl  extends CommonFunctions
 			else
 				{
 					outputMap.put("ListOfCategories", lst);	
-					rs.setViewName("../Category.jsp");
+					rs.setViewName("Category.jsp");
 					rs.setReturnObject(outputMap);
 				}			
 			}
@@ -558,7 +558,7 @@ public class ConfigurationServiceImpl  extends CommonFunctions
 			else
 				{
 					outputMap.put("ListOfWareHouse", lst);	
-					rs.setViewName("../WareHouse.jsp");
+					rs.setViewName("WareHouse.jsp");
 					rs.setReturnObject(outputMap);
 				}			
 			}
@@ -596,7 +596,7 @@ public class ConfigurationServiceImpl  extends CommonFunctions
 			else
 				{
 					outputMap.put("ListOfBrands", lst);	
-					rs.setViewName("../Brand.jsp");
+					rs.setViewName("Brand.jsp");
 					rs.setReturnObject(outputMap);
 				}			
 			}
@@ -636,7 +636,7 @@ public class ConfigurationServiceImpl  extends CommonFunctions
 			else
 				{
 					outputMap.put("ListOfBanks", lst);	
-					rs.setViewName("../BankMaster.jsp");
+					rs.setViewName("BankMaster.jsp");
 					rs.setReturnObject(outputMap);
 				}			
 			}
@@ -673,7 +673,7 @@ public class ConfigurationServiceImpl  extends CommonFunctions
 			else
 				{
 					outputMap.put("ListOfSBU", lst);	
-					rs.setViewName("../SBUMaster.jsp");
+					rs.setViewName("SBUMaster.jsp");
 					rs.setReturnObject(outputMap);
 				}			
 			}
@@ -740,7 +740,7 @@ public class ConfigurationServiceImpl  extends CommonFunctions
 			else
 				{
 					outputMap.put("ListOfBookings", lst);	
-					rs.setViewName("../BookingsMaster.jsp");
+					rs.setViewName("BookingsMaster.jsp");
 					rs.setReturnObject(outputMap);
 				}			
 			}
@@ -776,7 +776,7 @@ public class ConfigurationServiceImpl  extends CommonFunctions
 			else
 				{
 					outputMap.put("ListofGroups", lst);	
-					rs.setViewName("../GroupMaster.jsp");
+					rs.setViewName("GroupMaster.jsp");
 					rs.setReturnObject(outputMap);
 				}			
 			}
@@ -813,7 +813,7 @@ public class ConfigurationServiceImpl  extends CommonFunctions
 			else
 				{
 					outputMap.put("ListofExpenseHeads", lst);	
-					rs.setViewName("../ExpenseHeads.jsp");
+					rs.setViewName("ExpenseHeads.jsp");
 					rs.setReturnObject(outputMap);
 				}			
 			}
@@ -869,7 +869,7 @@ public class ConfigurationServiceImpl  extends CommonFunctions
 			else
 				{
 					outputMap.put("ListofExpense", lst);	
-					rs.setViewName("../ExpenseRegister.jsp");
+					rs.setViewName("ExpenseRegister.jsp");
 					rs.setReturnObject(outputMap);
 				}			
 			}
@@ -911,7 +911,7 @@ public class ConfigurationServiceImpl  extends CommonFunctions
 			else
 				{
 					outputMap.put("ListOfRoutines", lst);	
-					rs.setViewName("../Routines.jsp");
+					rs.setViewName("Routines.jsp");
 					rs.setReturnObject(outputMap);
 				}			
 			}
@@ -957,7 +957,7 @@ public class ConfigurationServiceImpl  extends CommonFunctions
 			{
 				outputMap.put("ListOfServices", lst);
 				outputMap.put("ListOfCategories", lObjConfigDao.getCategories(outputMap,con));
-				rs.setViewName("../ServiceMaster.jsp");
+				rs.setViewName("ServiceMaster.jsp");
 				rs.setReturnObject(outputMap);
 			}
 		}
@@ -1136,7 +1136,7 @@ public class ConfigurationServiceImpl  extends CommonFunctions
 		outputMap.put("ListOfitems", lObjConfigDao.showServices(outputMap,con));
 		
 		
-		rs.setViewName("../Showitems.jsp");									
+		rs.setViewName("Showitems.jsp");									
 		
 		rs.setReturnObject(outputMap);
 				
@@ -1159,7 +1159,7 @@ public class ConfigurationServiceImpl  extends CommonFunctions
 			String appId=((HashMap<String, String>) request.getSession().getAttribute("userdetails")).get("app_id");
 			outputMap.put("app_id", appId);
 		outputMap.put("itemList", lObjConfigDao.getBankMaster(outputMap,con));
-		rs.setViewName("../PrintLabels.jsp");								
+		rs.setViewName("PrintLabels.jsp");								
 		
 		rs.setReturnObject(outputMap);
 				
@@ -1188,7 +1188,7 @@ public class ConfigurationServiceImpl  extends CommonFunctions
 		outputMap.put("clientMaster", lObjConfigDao.getClientMaster(outputMap, con));
 		outputMap.put("EmployeeList", lObjConfigDao.getEmployeeMaster(outputMap, con));
 		
-		rs.setViewName("../AddNewBooking.jsp");								
+		rs.setViewName("AddNewBooking.jsp");								
 		
 		rs.setReturnObject(outputMap);
 				
@@ -1218,7 +1218,7 @@ public class ConfigurationServiceImpl  extends CommonFunctions
 		outputMap.put("activeConnections", cf.getActiveConnections( con));
 		outputMap.put("latestUserHits", lObjConfigDao.getLastestUserHits( con));
 		
-		rs.setViewName("../AuditTrail.jsp");								
+		rs.setViewName("AuditTrail.jsp");								
 		
 		rs.setReturnObject(outputMap);
 				
@@ -1245,7 +1245,7 @@ public class ConfigurationServiceImpl  extends CommonFunctions
 			String appId=((HashMap<String, String>) request.getSession().getAttribute("userdetails")).get("app_id");
 			outputMap.put("app_id", appId);
 		outputMap.put("ListOfClients", lObjConfigDao.getClientMaster(outputMap,con));
-		rs.setViewName("../PrintLabelsClient.jsp");								
+		rs.setViewName("PrintLabelsClient.jsp");								
 		
 		rs.setReturnObject(outputMap);
 				
@@ -1282,7 +1282,7 @@ public class ConfigurationServiceImpl  extends CommonFunctions
 			outputMap.put("firmId", firmId);
 		outputMap.put("itemList", lObjConfigDao.getBankMaster(outputMap,con));
 		outputMap.put("inventoryCountingList", lObjConfigDao.getInventoryCountingListForThisfirm(outputMap,con));	
-		rs.setViewName("../InventoryCounting.jsp");	
+		rs.setViewName("InventoryCounting.jsp");	
 		
 		
 		
@@ -1345,7 +1345,7 @@ public class ConfigurationServiceImpl  extends CommonFunctions
 				//outputMap.put("totalDetails", totalDetails);
 				
 				
-				rs.setViewName("../StockStatus.jsp");
+				rs.setViewName("StockStatus.jsp");
 				rs.setReturnObject(outputMap);
 			}
 		}
@@ -1388,7 +1388,7 @@ public class ConfigurationServiceImpl  extends CommonFunctions
 			{
 				outputMap.put("ListStockModifications", lst);			
 				outputMap.put("listOffirm", lObjConfigDao.getfirmMaster(outputMap,con));				
-				rs.setViewName("../StockModifications.jsp");
+				rs.setViewName("StockModifications.jsp");
 				rs.setReturnObject(outputMap);
 			}
 		}
@@ -1635,7 +1635,7 @@ public class ConfigurationServiceImpl  extends CommonFunctions
 			
 			
 			
-			rs.setViewName("../AddServices.jsp");	
+			rs.setViewName("AddServices.jsp");	
 			rs.setReturnObject(outputMap);
 			
 		}
@@ -1672,7 +1672,7 @@ public class ConfigurationServiceImpl  extends CommonFunctions
 		outputMap.put("wareHouseList", lObjConfigDao.getListOfWareHouse(outputMap, con));
 		outputMap.put("todaysDate", lObjConfigDao.getDateFromDB(con));
 		outputMap.put("addStockList", lObjConfigDao.getInventoryCountingListForThisfirm(outputMap,con));	
-		rs.setViewName("../AddStock.jsp");	
+		rs.setViewName("AddStock.jsp");	
 		rs.setReturnObject(outputMap);
 				
 		}
@@ -1696,7 +1696,7 @@ public class ConfigurationServiceImpl  extends CommonFunctions
 			outputMap.put("todaysDate", lObjConfigDao.getDateFromDB(con));
 			outputMap.put("clientMaster", lObjConfigDao.getClientMaster(outputMap, con));
 			
-			rs.setViewName("../CollectPayment.jsp");	
+			rs.setViewName("CollectPayment.jsp");	
 			rs.setReturnObject(outputMap);
 			
 		}
@@ -1772,7 +1772,7 @@ public class ConfigurationServiceImpl  extends CommonFunctions
 			
 			
 			
-			rs.setViewName("../GenerateInvoice.jsp");	
+			rs.setViewName("GenerateInvoice.jsp");	
 			rs.setReturnObject(outputMap);
 			
 		}
@@ -1824,7 +1824,7 @@ public class ConfigurationServiceImpl  extends CommonFunctions
 			
 			
 			
-			rs.setViewName("../GenerateSI.jsp");	
+			rs.setViewName("GenerateSI.jsp");	
 			rs.setReturnObject(outputMap);
 			
 		}
@@ -1879,7 +1879,7 @@ public class ConfigurationServiceImpl  extends CommonFunctions
 			
 			
 			
-			rs.setViewName("../GeneratePI.jsp");	
+			rs.setViewName("GeneratePI.jsp");	
 			rs.setReturnObject(outputMap);
 			
 		}
@@ -1927,7 +1927,7 @@ public class ConfigurationServiceImpl  extends CommonFunctions
 			
 			
 			
-			rs.setViewName("../GenerateChallanOut.jsp");	
+			rs.setViewName("GenerateChallanOut.jsp");	
 			rs.setReturnObject(outputMap);
 			
 		}
@@ -1973,7 +1973,7 @@ public class ConfigurationServiceImpl  extends CommonFunctions
 			
 			
 			
-			rs.setViewName("../GenerateChallanIn.jsp");	
+			rs.setViewName("GenerateChallanIn.jsp");	
 			rs.setReturnObject(outputMap);
 			
 		}
@@ -2000,7 +2000,7 @@ public class ConfigurationServiceImpl  extends CommonFunctions
 		try
 		{	
 			if(categoryId!=0) {			outputMap.put("categoryDetails", lObjConfigDao.getCategoryDetails(outputMap ,connections));} 
-			rs.setViewName("../AddCategory.jsp");	
+			rs.setViewName("AddCategory.jsp");	
 			rs.setReturnObject(outputMap);		
 		}
 		catch (Exception e)
@@ -2023,7 +2023,7 @@ public class ConfigurationServiceImpl  extends CommonFunctions
 		try
 		{	
 			outputMap.put("listfirmData", lObjConfigDao.getfirmMaster(outputMap,connections)); 
-			rs.setViewName("../InternalTransfer.jsp");	
+			rs.setViewName("InternalTransfer.jsp");	
 			rs.setReturnObject(outputMap);		
 		}
 		catch (Exception e)
@@ -2046,7 +2046,7 @@ public class ConfigurationServiceImpl  extends CommonFunctions
 		try
 		{	
 			outputMap.put("listfirmData", lObjConfigDao.getfirmMaster(outputMap,connections)); 
-			rs.setViewName("../InternalJournalTransfer.jsp");	
+			rs.setViewName("InternalJournalTransfer.jsp");	
 			rs.setReturnObject(outputMap);		
 		}
 		catch (Exception e)
@@ -2158,7 +2158,7 @@ public class ConfigurationServiceImpl  extends CommonFunctions
 		try
 		{	
 			if(wareHouseId!=0) {			outputMap.put("wareHouseDetails", lObjConfigDao.getWareHouseDetails(outputMap ,connections));} 
-			rs.setViewName("../AddWareHouse.jsp");	
+			rs.setViewName("AddWareHouse.jsp");	
 			rs.setReturnObject(outputMap);		
 		}
 		catch (Exception e)
@@ -2181,7 +2181,7 @@ public class ConfigurationServiceImpl  extends CommonFunctions
 		try
 		{	
 			if(categoryId!=0) {			outputMap.put("brandDetails", lObjConfigDao.getBrandDetail(outputMap ,connections));} 
-			rs.setViewName("../AddBrand.jsp");	
+			rs.setViewName("AddBrand.jsp");	
 			rs.setReturnObject(outputMap);		
 		}
 		catch (Exception e)
@@ -2205,7 +2205,7 @@ public class ConfigurationServiceImpl  extends CommonFunctions
 		{	
 			if(categoryId!=0) {			outputMap.put("sbuDetails", lObjConfigDao.getsbuDetail(outputMap ,con));}
 			outputMap.put("EmployeeList", lObjConfigDao.getEmployeeMaster(outputMap, con));
-			rs.setViewName("../AddSBU.jsp");	
+			rs.setViewName("AddSBU.jsp");	
 			rs.setReturnObject(outputMap);		
 		}
 		catch (Exception e)
@@ -2229,7 +2229,7 @@ public class ConfigurationServiceImpl  extends CommonFunctions
 		{	
 			if(categoryId!=0) {			outputMap.put("BankDetails", lObjConfigDao.getBankDetail(outputMap ,con));}
 			
-			rs.setViewName("../AddBank.jsp");	
+			rs.setViewName("AddBank.jsp");	
 			rs.setReturnObject(outputMap);		
 		}
 		catch (Exception e)
@@ -2253,7 +2253,7 @@ public class ConfigurationServiceImpl  extends CommonFunctions
 		outputMap.put("app_id", appId);
 		try
 		{	
-			rs.setViewName("../ConfigureTables.jsp");	
+			rs.setViewName("ConfigureTables.jsp");	
 			rs.setReturnObject(outputMap);		
 		}
 		catch (Exception e)
@@ -2282,7 +2282,7 @@ public class ConfigurationServiceImpl  extends CommonFunctions
 				hm.put("SrNo", i++);
 			}
 			outputMap.put("orderDetails", orderDetails);
-			rs.setViewName("../AddOrder.jsp");	
+			rs.setViewName("AddOrder.jsp");	
 			rs.setReturnObject(outputMap);		
 		}
 		catch (Exception e)
@@ -2311,7 +2311,7 @@ public class ConfigurationServiceImpl  extends CommonFunctions
 			
 			List<LinkedHashMap<String, Object>> lst= lObjConfigDao.getTableStatus(firmId,conWithF);
 			outputMap.put("ListOfTables", lst);
-			rs.setViewName("../Tables.jsp");	
+			rs.setViewName("Tables.jsp");	
 			rs.setReturnObject(outputMap);		
 		}
 		catch (Exception e)
@@ -2341,7 +2341,7 @@ public class ConfigurationServiceImpl  extends CommonFunctions
 				hm.put("SrNo", i++);
 			}
 			outputMap.put("pendingitems", lst);
-			rs.setViewName("../PendingOrders.jsp");	
+			rs.setViewName("PendingOrders.jsp");	
 			rs.setReturnObject(outputMap);		
 		}
 		catch (Exception e)
@@ -2366,7 +2366,7 @@ public class ConfigurationServiceImpl  extends CommonFunctions
 		{	
 			outputMap.put("userList", lObjConfigDao.getEmployeeMaster(outputMap,con));
 			outputMap.put("roleList", apptypes.get("Master"));
-			rs.setViewName("../UserRoleMapping.jsp");	
+			rs.setViewName("UserRoleMapping.jsp");	
 			rs.setReturnObject(outputMap);		
 		}
 		catch (Exception e)
@@ -2394,7 +2394,7 @@ public class ConfigurationServiceImpl  extends CommonFunctions
 			
 			
 			outputMap.put("serviceList", lObjConfigDao.getServiceMaster(outputMap,con));
-			rs.setViewName("../ClientServicesMapping.jsp");	
+			rs.setViewName("ClientServicesMapping.jsp");	
 			rs.setReturnObject(outputMap);		
 		}
 		catch (Exception e)
@@ -2475,7 +2475,7 @@ public class ConfigurationServiceImpl  extends CommonFunctions
 		try
 		{	
 			if(groupId!=0) {			outputMap.put("groupDetails", lObjConfigDao.getGroupDetails(groupId,con));} 
-			rs.setViewName("../AddGroup.jsp");	
+			rs.setViewName("AddGroup.jsp");	
 			rs.setReturnObject(outputMap);		
 		}
 		catch (Exception e)
@@ -2496,7 +2496,7 @@ public class ConfigurationServiceImpl  extends CommonFunctions
 		try
 		{	
 			if(groupId!=0) {			outputMap.put("expenseHeadDetails", lObjConfigDao.getExpenseHeadDetails(groupId,con));} 
-			rs.setViewName("../AddExpenseHead.jsp");	
+			rs.setViewName("AddExpenseHead.jsp");	
 			rs.setReturnObject(outputMap);		
 		}
 		catch (Exception e)
@@ -2550,7 +2550,7 @@ public class ConfigurationServiceImpl  extends CommonFunctions
 				outputMap.put("expenseDetails", lObjConfigDao.getExpenseDetails(groupId,con));
 				
 			} 
-			rs.setViewName("../AddExpense.jsp");	
+			rs.setViewName("AddExpense.jsp");	
 			rs.setReturnObject(outputMap);		
 		}
 		catch (Exception e)
@@ -2585,7 +2585,7 @@ public class ConfigurationServiceImpl  extends CommonFunctions
 		{	
 			if(RoutineId!=0) {			outputMap.put("routineDetails", lObjConfigDao.getRoutinepDetails(RoutineId,con));}
 			outputMap.put("itemList", lObjConfigDao.getBankMaster(outputMap,con));
-			rs.setViewName("../AddRoutine.jsp");	
+			rs.setViewName("AddRoutine.jsp");	
 			rs.setReturnObject(outputMap);		
 		}
 		catch (Exception e)
@@ -2610,7 +2610,7 @@ public class ConfigurationServiceImpl  extends CommonFunctions
 			{	
 				outputMap.put("invoiceSubDetails", lObjConfigDao.getInvoiceSubDetails(detailId,con));
 			} 
-			rs.setViewName("../Returnitems.jsp");	
+			rs.setViewName("Returnitems.jsp");	
 			rs.setReturnObject(outputMap);		
 		}
 		catch (Exception e)
@@ -2649,7 +2649,7 @@ public class ConfigurationServiceImpl  extends CommonFunctions
 			outputMap.put("stock_id", stockId);
 			outputMap.put("firmList", lObjConfigDao.getfirmMaster(outputMap,con));
 			outputMap.put("stockDetails", lObjConfigDao.getStockDetailsbyId(outputMap,con));			
-			rs.setViewName("../ConfigureLowStock.jsp");	
+			rs.setViewName("ConfigureLowStock.jsp");	
 			rs.setReturnObject(outputMap);		
 		}
 		catch (Exception e)
@@ -4825,7 +4825,7 @@ public class ConfigurationServiceImpl  extends CommonFunctions
 		
 			 outputMap.put("CategoriesList", lObjConfigDao.getCategories(outputMap,con));
 			 outputMap.put("itemDetails", lObjConfigDao.getDetailsforItem(itemId,con));			
-		rs.setViewName("../Additems.jsp");	
+		rs.setViewName("Additems.jsp");	
 		rs.setReturnObject(outputMap);
 		
 		}
@@ -4860,7 +4860,7 @@ public class ConfigurationServiceImpl  extends CommonFunctions
 	//	outputMap.put("ListOfOrders", lObjConfigDao.ShowOrders(request));
 		
 		
-		rs.setViewName("../ShowOrders.jsp");									
+		rs.setViewName("ShowOrders.jsp");									
 		
 		rs.setReturnObject(outputMap);
 				
@@ -4885,7 +4885,7 @@ public class ConfigurationServiceImpl  extends CommonFunctions
 		outputMap.put("app_id", appId);
 			
 		outputMap.put("ListOfOrders", lObjConfigDao.getMobileAppOrders(appId,con));				
-		rs.setViewName("../MobileBookings.jsp");									
+		rs.setViewName("MobileBookings.jsp");									
 		
 		rs.setReturnObject(outputMap);
 				
@@ -4970,7 +4970,7 @@ public class ConfigurationServiceImpl  extends CommonFunctions
 			{
 				outputMap.put("groupList", lObjConfigDao.getClientGroup(appId,con));
 				outputMap.put("ListOfClients", lst);	
-				rs.setViewName("../Client.jsp");
+				rs.setViewName("Client.jsp");
 				rs.setReturnObject(outputMap);
 			}
 		}
@@ -5058,7 +5058,7 @@ public class ConfigurationServiceImpl  extends CommonFunctions
 			outputMap.put("clientDetails", hm);
 			outputMap.put("groupList", lObjConfigDao.getClientGroup(appId,con));
 			
-			rs.setViewName("../AddClient.jsp");	
+			rs.setViewName("AddClient.jsp");	
 			rs.setReturnObject(outputMap);		
 		}
 		catch (Exception e)
@@ -5092,7 +5092,7 @@ public class ConfigurationServiceImpl  extends CommonFunctions
 			else
 			{
 				outputMap.put("ListOffirms", lst);	
-				rs.setViewName("../Firm.jsp");
+				rs.setViewName("Firm.jsp");
 				rs.setReturnObject(outputMap);
 			}
 			
@@ -5124,7 +5124,7 @@ public class ConfigurationServiceImpl  extends CommonFunctions
 			outputMap.put("sbuMaster", lObjConfigDao.getSBUMaster(outputMap,con));
 			
 			
-			rs.setViewName("../AddFirm.jsp");	
+			rs.setViewName("AddFirm.jsp");	
 			rs.setReturnObject(outputMap);		
 		}
 		catch (Exception e)
@@ -5140,7 +5140,7 @@ public class ConfigurationServiceImpl  extends CommonFunctions
 		CustomResultObject rs=new CustomResultObject();		
 		try
 		{
-			rs.setViewName("../SwitchFirm.jsp");	
+			rs.setViewName("SwitchFirm.jsp");	
 			rs.setReturnObject(showSwitchFirmitem(request, con));		
 		}
 		catch (Exception e)
@@ -5279,7 +5279,7 @@ public class ConfigurationServiceImpl  extends CommonFunctions
 		try
 		{
 			outputMap.put("listfirmData", lst);					
-			rs.setViewName("../DailyInvoiceReportParameter.jsp");
+			rs.setViewName("DailyInvoiceReportParameter.jsp");
 			rs.setReturnObject(outputMap);			
 		}
 		catch (Exception e)
@@ -5301,7 +5301,7 @@ public class ConfigurationServiceImpl  extends CommonFunctions
 		{
 			List<LinkedHashMap<String, Object>> lst = lObjConfigDao.getClientMaster(outputMap, con);
 			outputMap.put("clientList", lst);
-			rs.setViewName("../ClientInvoiceReportParameter.jsp");
+			rs.setViewName("ClientInvoiceReportParameter.jsp");
 			rs.setReturnObject(outputMap);			
 		}
 		catch (Exception e)
@@ -5322,7 +5322,7 @@ public class ConfigurationServiceImpl  extends CommonFunctions
 		{
 			List<LinkedHashMap<String, Object>> lst = lObjConfigDao.getClientMaster(outputMap, con);
 			outputMap.put("clientList", lst);
-			rs.setViewName("../ClientLedgerReportParameter.jsp");
+			rs.setViewName("ClientLedgerReportParameter.jsp");
 			rs.setReturnObject(outputMap);			
 		}
 		catch (Exception e)
@@ -5344,7 +5344,7 @@ public class ConfigurationServiceImpl  extends CommonFunctions
 		{
 			List<LinkedHashMap<String, Object>> lst = lObjConfigDao.getClientMaster(outputMap, con);
 			outputMap.put("clientList", lst);
-			rs.setViewName("../SalesReport2Parameters.jsp");
+			rs.setViewName("SalesReport2Parameters.jsp");
 			rs.setReturnObject(outputMap);			
 		}
 		catch (Exception e)
@@ -5395,7 +5395,7 @@ public class ConfigurationServiceImpl  extends CommonFunctions
 			List<LinkedHashMap<String, Object>> lst1 = lObjConfigDao.getStockRegister(outputMap,con);
 			outputMap.put("stockRegisterList", lst1);
 			
-			rs.setViewName("../StockTransfer.jsp");
+			rs.setViewName("StockTransfer.jsp");
 			rs.setReturnObject(outputMap);			
 		}
 		catch (Exception e)
@@ -5475,7 +5475,7 @@ public class ConfigurationServiceImpl  extends CommonFunctions
 				outputMap.put("txtfromdate", fromDate);
 				outputMap.put("txttodate", toDate);
 				
-				rs.setViewName("../StockRegisterGenerated.jsp");
+				rs.setViewName("StockRegisterGenerated.jsp");
 				rs.setReturnObject(outputMap);
 			}
 		}
@@ -5571,7 +5571,7 @@ public class ConfigurationServiceImpl  extends CommonFunctions
 				outputMap.putAll(lhm);
 				
 				
-				rs.setViewName("../BankPassBookGenerated.jsp");
+				rs.setViewName("BankPassBookGenerated.jsp");
 				rs.setReturnObject(outputMap);
 			}
 		}
@@ -5620,7 +5620,7 @@ public class ConfigurationServiceImpl  extends CommonFunctions
 			if(fromDate.equals("") || toDate.equals("") )
 			{
 				outputMap.put("dailyInvoiceData", null);	
-				rs.setViewName("../ExpenseReportGenerated.jsp");
+				rs.setViewName("ExpenseReportGenerated.jsp");
 				rs.setReturnObject(outputMap);
 				return rs;
 			}
@@ -5644,7 +5644,7 @@ public class ConfigurationServiceImpl  extends CommonFunctions
 			else
 			{
 				outputMap.putAll(lhm);
-				rs.setViewName("../ExpenseReportGenerated.jsp");
+				rs.setViewName("ExpenseReportGenerated.jsp");
 				rs.setReturnObject(outputMap);
 			}
 		}
@@ -5735,7 +5735,7 @@ public class ConfigurationServiceImpl  extends CommonFunctions
 
 				
 				
-				rs.setViewName("../ProfitAndLossGenerated.jsp");
+				rs.setViewName("ProfitAndLossGenerated.jsp");
 				rs.setReturnObject(outputMap);
 			
 		}
@@ -6010,7 +6010,7 @@ public class ConfigurationServiceImpl  extends CommonFunctions
 			if(fromDate.equals("") || toDate.equals("") )
 			{
 				outputMap.put("dailyInvoiceData", null);	
-				rs.setViewName("../ExpenseReportGenerated.jsp");
+				rs.setViewName("ExpenseReportGenerated.jsp");
 				rs.setReturnObject(outputMap);
 				return rs;
 			}
@@ -6054,7 +6054,7 @@ public class ConfigurationServiceImpl  extends CommonFunctions
 
 				
 				
-				rs.setViewName("../ExpenseReportGenerated.jsp");
+				rs.setViewName("ExpenseReportGenerated.jsp");
 				rs.setReturnObject(outputMap);
 			}
 		}
@@ -6112,7 +6112,7 @@ public class ConfigurationServiceImpl  extends CommonFunctions
 			else
 			{
 				outputMap.put("stockRegisterList", lst);	
-				rs.setViewName("../StockRegisterGenerated.jsp");
+				rs.setViewName("StockRegisterGenerated.jsp");
 				rs.setReturnObject(outputMap);
 			}
 		}
@@ -6132,7 +6132,7 @@ public class ConfigurationServiceImpl  extends CommonFunctions
 		CustomResultObject rs=new CustomResultObject();
 		HashMap<String, Object> outputMap=new HashMap<>();
 		try {				
-			rs.setViewName("../DailyPaymentRegisterParameter.jsp");
+			rs.setViewName("DailyPaymentRegisterParameter.jsp");
 			rs.setReturnObject(outputMap);			
 		}
 		catch (Exception e)
@@ -6227,7 +6227,7 @@ public class ConfigurationServiceImpl  extends CommonFunctions
 				outputMap.put("type", type);
 				
 				
-				rs.setViewName("../DailyPaymentRegisterGenerated.jsp");
+				rs.setViewName("DailyPaymentRegisterGenerated.jsp");
 				rs.setReturnObject(outputMap);
 			}
 			
@@ -6246,7 +6246,7 @@ public class ConfigurationServiceImpl  extends CommonFunctions
 		HashMap<String, Object> outputMap=new HashMap<>();		
 		try
 		{				
-			rs.setViewName("../PendingClientCollectionParameter.jsp");
+			rs.setViewName("PendingClientCollectionParameter.jsp");
 			rs.setReturnObject(outputMap);			
 		}
 		catch (Exception e)
@@ -6309,7 +6309,7 @@ public class ConfigurationServiceImpl  extends CommonFunctions
 			else
 			{
 				outputMap.put("ListOfPendingCollection", lst);	
-				rs.setViewName("../PendingClientCollection.jsp");
+				rs.setViewName("PendingClientCollection.jsp");
 				rs.setReturnObject(outputMap);
 			}
 			
@@ -6328,7 +6328,7 @@ public class ConfigurationServiceImpl  extends CommonFunctions
 		CustomResultObject rs=new CustomResultObject();
 		HashMap<String, Object> outputMap=new HashMap<>();
 		try {				
-			rs.setViewName("../CategoryWiseReportParameter.jsp");
+			rs.setViewName("CategoryWiseReportParameter.jsp");
 			rs.setReturnObject(outputMap);			
 		}
 		catch (Exception e)
@@ -6392,7 +6392,7 @@ public class ConfigurationServiceImpl  extends CommonFunctions
 			else
 			{
 				outputMap.put("CategoryWiseReportData", lst);	
-				rs.setViewName("../CategoryWiseReportGenerated.jsp");
+				rs.setViewName("CategoryWiseReportGenerated.jsp");
 				rs.setReturnObject(outputMap);
 			}
 			
@@ -6411,7 +6411,7 @@ public class ConfigurationServiceImpl  extends CommonFunctions
 		CustomResultObject rs=new CustomResultObject();
 		HashMap<String, Object> outputMap=new HashMap<>();
 		try {				
-			rs.setViewName("../EmployeeWiseReportParameter.jsp");
+			rs.setViewName("EmployeeWiseReportParameter.jsp");
 			rs.setReturnObject(outputMap);			
 		}
 		catch (Exception e)
@@ -6469,7 +6469,7 @@ public class ConfigurationServiceImpl  extends CommonFunctions
 			else
 			{
 				outputMap.put("EmployeeWiseReportData", lst);	
-				rs.setViewName("../EmployeeWiseReportGenerated.jsp");
+				rs.setViewName("EmployeeWiseReportGenerated.jsp");
 				rs.setReturnObject(outputMap);
 			}
 			
@@ -6497,7 +6497,7 @@ public class ConfigurationServiceImpl  extends CommonFunctions
 		try
 		{
 			outputMap.put("listfirmData", lst);					
-			rs.setViewName("../ConsolidatedPaymentModeParameter.jsp");
+			rs.setViewName("ConsolidatedPaymentModeParameter.jsp");
 			rs.setReturnObject(outputMap);			
 		}
 		catch (Exception e)
@@ -6557,7 +6557,7 @@ public class ConfigurationServiceImpl  extends CommonFunctions
 			else
 			{
 				outputMap.put("ConsolidatedPaymentMode", lst);	
-				rs.setViewName("../ConsolidatedPaymentModeGenerated.jsp");
+				rs.setViewName("ConsolidatedPaymentModeGenerated.jsp");
 				rs.setReturnObject(outputMap);
 			}
 		}
@@ -6584,7 +6584,7 @@ public class ConfigurationServiceImpl  extends CommonFunctions
 		try
 		{
 			outputMap.put("listfirmData", lst);					
-			rs.setViewName("../PaymentTypeCollectionParameter.jsp");
+			rs.setViewName("PaymentTypeCollectionParameter.jsp");
 			rs.setReturnObject(outputMap);			
 		}
 		catch (Exception e)
@@ -6643,7 +6643,7 @@ public class ConfigurationServiceImpl  extends CommonFunctions
 			else
 			{
 				outputMap.put("PaymentTypeCollection", lst);	
-				rs.setViewName("../PaymentTypeCollectionGenerated.jsp");
+				rs.setViewName("PaymentTypeCollectionGenerated.jsp");
 				rs.setReturnObject(outputMap);
 			}
 		}
@@ -6777,7 +6777,7 @@ public class ConfigurationServiceImpl  extends CommonFunctions
 			else
 				{
 					outputMap.put("ListOfEmployee", lst);	
-					rs.setViewName("../Employee.jsp");
+					rs.setViewName("Employee.jsp");
 					rs.setReturnObject(outputMap);
 				}			
 			}
@@ -6878,7 +6878,7 @@ public class ConfigurationServiceImpl  extends CommonFunctions
 			
 
 			outputMap.put("employeeList", lObjConfigDao.getEmployeeMaster(outputMap, con));
-			rs.setViewName("../AddEmployee.jsp");	
+			rs.setViewName("AddEmployee.jsp");	
 			rs.setReturnObject(outputMap);
 			
 		}
@@ -6935,7 +6935,7 @@ public class ConfigurationServiceImpl  extends CommonFunctions
 		try
 		{		 
 			
-			rs.setViewName("../changePassword.jsp");
+			rs.setViewName("changePassword.jsp");
 			rs.setReturnObject(outputMap);
 
 		}
@@ -6958,7 +6958,7 @@ public class ConfigurationServiceImpl  extends CommonFunctions
 		try
 		{
 			outputMap.put("listReturnData", lst);					
-			rs.setViewName("../ReturnRegisterParameter.jsp");
+			rs.setViewName("ReturnRegisterParameter.jsp");
 			rs.setReturnObject(outputMap);			
 		}
 		catch (Exception e)
@@ -7038,7 +7038,7 @@ public class ConfigurationServiceImpl  extends CommonFunctions
 			
 			outputMap.put("ListOffirms", lObjConfigDao.getfirmMaster(outputMap,con));	
 			outputMap.put("listReturnData", lst);			
-			rs.setViewName("../Challans.jsp");
+			rs.setViewName("Challans.jsp");
 			rs.setReturnObject(outputMap);			
 		}
 		catch (Exception e)
@@ -7115,7 +7115,7 @@ public class ConfigurationServiceImpl  extends CommonFunctions
 			
 			
 			outputMap.putAll(getTransactionsitem(outputMap,con));			
-			rs.setViewName("../Transactions.jsp");
+			rs.setViewName("Transactions.jsp");
 			rs.setReturnObject(outputMap);			
 		}
 		catch (Exception e)
@@ -7250,7 +7250,7 @@ public class ConfigurationServiceImpl  extends CommonFunctions
 
 			outputMap.put("ListOffirms", lObjConfigDao.getfirmMaster(outputMap,con));	
 			outputMap.put("listReturnData", lst);			
-			rs.setViewName("../Journals.jsp");
+			rs.setViewName("Journals.jsp");
 			rs.setReturnObject(outputMap);			
 		}
 		catch (Exception e)
@@ -7320,7 +7320,7 @@ public class ConfigurationServiceImpl  extends CommonFunctions
 			
 			outputMap.put("ListOffirms", lObjConfigDao.getfirmMaster(outputMap,con));	
 			outputMap.put("listReturnData", lst);			
-			rs.setViewName("../Transfers.jsp");
+			rs.setViewName("Transfers.jsp");
 			rs.setReturnObject(outputMap);			
 		}
 		catch (Exception e)
@@ -7391,7 +7391,7 @@ public class ConfigurationServiceImpl  extends CommonFunctions
 			
 			outputMap.put("ListOffirms", lObjConfigDao.getfirmMaster(outputMap,con));	
 			outputMap.put("listReturnData", lst);			
-			rs.setViewName("../JournalTransfers.jsp");
+			rs.setViewName("JournalTransfers.jsp");
 			rs.setReturnObject(outputMap);			
 		}
 		catch (Exception e)
@@ -7469,7 +7469,7 @@ public class ConfigurationServiceImpl  extends CommonFunctions
 			
 			outputMap.put("ListOffirms", lObjConfigDao.getfirmMaster(outputMap,con));	
 			outputMap.put("listReturnData", lst);			
-			rs.setViewName("../Invoices.jsp");
+			rs.setViewName("Invoices.jsp");
 			rs.setReturnObject(outputMap);			
 		}
 		catch (Exception e)
@@ -7529,7 +7529,7 @@ public class ConfigurationServiceImpl  extends CommonFunctions
 			else
 			{
 				outputMap.put("ReturnRegister", lst);	
-				rs.setViewName("../ReturnRegisterGenerated.jsp");
+				rs.setViewName("ReturnRegisterGenerated.jsp");
 				rs.setReturnObject(outputMap);
 			}
 		}
@@ -7590,7 +7590,7 @@ public class ConfigurationServiceImpl  extends CommonFunctions
 								
 				outputMap.put("totalDetails",totalDetails);
 				outputMap.put("clientDetails", lObjConfigDao.getClientDetails(Long.valueOf(clientId),con));
-				rs.setViewName("../ClientInvoiceHistoryGenerated.jsp");
+				rs.setViewName("ClientInvoiceHistoryGenerated.jsp");
 				rs.setReturnObject(outputMap);
 			}
 		}
@@ -7757,6 +7757,7 @@ public class ConfigurationServiceImpl  extends CommonFunctions
 	
 	
 	String delimiter="/";
+	private Object lst;
 
 	public CustomResultObject exportClientLedgerAsPDF(HttpServletRequest request,Connection con) throws ClassNotFoundException, SQLException, ParseException
 	{
@@ -7869,7 +7870,7 @@ public class ConfigurationServiceImpl  extends CommonFunctions
 				
 				if(clientId.equals(""))
 				{
-					rs.setViewName("../ClientLedgerGenerated.jsp");			
+					rs.setViewName("ClientLedgerGenerated.jsp");			
 					rs.setReturnObject(outputMap);
 					return rs;
 				}
@@ -7918,7 +7919,7 @@ public class ConfigurationServiceImpl  extends CommonFunctions
 				outputMap.put("ListLedger",lst );
 				outputMap.put("clientDetails",lObjConfigDao.getClientDetails(Long.valueOf(clientId),con));
 				
-				rs.setViewName("../ClientLedgerGenerated.jsp");
+				rs.setViewName("ClientLedgerGenerated.jsp");
 				rs.setReturnObject(outputMap);
 			}
 		}
@@ -8065,7 +8066,7 @@ public class ConfigurationServiceImpl  extends CommonFunctions
 			else
 			{
 				outputMap.put("ClientInvoiceHistory", lst);	
-				rs.setViewName("../ClientitemHistoryGenerated.jsp");
+				rs.setViewName("ClientitemHistoryGenerated.jsp");
 				rs.setReturnObject(outputMap);
 			}
 		}
@@ -8090,7 +8091,7 @@ public class ConfigurationServiceImpl  extends CommonFunctions
 		{
 			List<LinkedHashMap<String, Object>> lst = lObjConfigDao.getClientMaster(outputMap, con);
 			outputMap.put("clientList", lst);
-			rs.setViewName("../ClientitemReportParameter.jsp");
+			rs.setViewName("ClientitemReportParameter.jsp");
 			rs.setReturnObject(outputMap);			
 		}
 		catch (Exception e)
@@ -8373,7 +8374,7 @@ public class ConfigurationServiceImpl  extends CommonFunctions
 		CustomResultObject rs=new CustomResultObject();		
 		try
 		{
-			rs.setViewName("../InvoiceConfig.jsp");	
+			rs.setViewName("InvoiceConfig.jsp");	
 			rs.setReturnObject(showInvoiceConfigitem(request, con));		
 		}
 		catch (Exception e)
@@ -8763,7 +8764,7 @@ public class ConfigurationServiceImpl  extends CommonFunctions
 				//outputMap.put("totalDetails", totalDetails);
 				
 				
-				rs.setViewName("../StockStatusClubbed.jsp");
+				rs.setViewName("StockStatusClubbed.jsp");
 				rs.setReturnObject(outputMap);
 			}
 		}
@@ -8901,7 +8902,7 @@ public class ConfigurationServiceImpl  extends CommonFunctions
 		
 		if(jobsheetno.equals(""))
 		{
-			rs.setViewName("../CostSheetReportGenerate.jsp");
+			rs.setViewName("CostSheetReportGenerate.jsp");
 			rs.setReturnObject(outputMap);
 			return rs;
 
@@ -8916,7 +8917,7 @@ public class ConfigurationServiceImpl  extends CommonFunctions
 			
 			outputMap.put("requiredData",getCostSheetData(jobsheetno, con));
 			
-				rs.setViewName("../CostSheetReportGenerated.jsp");
+				rs.setViewName("CostSheetReportGenerated.jsp");
 				rs.setReturnObject(outputMap);
 			
 		}
@@ -8944,7 +8945,7 @@ public class ConfigurationServiceImpl  extends CommonFunctions
 			// lObjConfigDao.getCategoryDetails(outputMap ,connections));}
 			outputMap.put("clientMaster", lObjConfigDao.getClientMaster(outputMap, con));
 
-			rs.setViewName("../CreateEnquiry.jsp");
+			rs.setViewName("CreateEnquiry.jsp");
 			rs.setReturnObject(outputMap);
 		} catch (Exception e) {
 			writeErrorToDB(e);
@@ -9031,7 +9032,7 @@ public class ConfigurationServiceImpl  extends CommonFunctions
 			List<LinkedHashMap<String, Object>> lst = lObjConfigDao.getenquiries(outputMap, con);
 
 			
-			rs.setViewName("../showEnquiries.jsp");
+			rs.setViewName("showEnquiries.jsp");
 			rs.setReturnObject(outputMap); 
 			
 			
@@ -9174,7 +9175,7 @@ public class ConfigurationServiceImpl  extends CommonFunctions
 				//outputMap.put("totalDetails", totalDetails);
 				
 				
-				rs.setViewName("../StockStatusSales.jsp");
+				rs.setViewName("StockStatusSales.jsp");
 				rs.setReturnObject(outputMap);
 			}
 		}
@@ -9325,7 +9326,7 @@ public class ConfigurationServiceImpl  extends CommonFunctions
 		CustomResultObject rs=new CustomResultObject();			
 		HashMap<String, Object> outputMap=new HashMap<>();
 		 
-			rs.setViewName("../ResetPassword.jsp");	
+			rs.setViewName("ResetPassword.jsp");	
 			rs.setReturnObject(outputMap);						
 		return rs;
 	}
@@ -9346,7 +9347,7 @@ public class ConfigurationServiceImpl  extends CommonFunctions
 		
 		
 		
-		rs.setViewName("../GenerateEstimate.jsp");
+		rs.setViewName("GenerateEstimate.jsp");
 		rs.setReturnObject(outputMap);
 
 	
@@ -9430,7 +9431,7 @@ public class ConfigurationServiceImpl  extends CommonFunctions
 				outputMap.put("txttodate", toDate);
 				
 				
-				rs.setViewName("../GeneratedEstimates.jsp");
+				rs.setViewName("GeneratedEstimates.jsp");
 				rs.setReturnObject(outputMap);
 			}
 		}
@@ -9527,7 +9528,7 @@ public class ConfigurationServiceImpl  extends CommonFunctions
 			
 				outputMap.put("userDetails", lObjConfigDao.getuserDetailsById(Long.valueOf(userId), con));
 				outputMap.put("lstUserRoleDetails", lstUserRoleDetailsNew);
-				rs.setViewName("../UserDetails.jsp");
+				rs.setViewName("UserDetails.jsp");
 				rs.setReturnObject(outputMap);
 			
 		} catch (Exception e) {
@@ -9561,7 +9562,7 @@ public class ConfigurationServiceImpl  extends CommonFunctions
 		else
 			{
 				
-				rs.setViewName("../HolidayMaster.jsp");
+				rs.setViewName("HolidayMaster.jsp");
 				
 			}	
 			
@@ -9590,7 +9591,7 @@ public class ConfigurationServiceImpl  extends CommonFunctions
 		try
 		{	
 			if(holidayId!=0) {			outputMap.put("holidayDetails", lObjConfigDao.getHolidayDetails(outputMap ,connections));} 
-			rs.setViewName("../AddHoliday.jsp");	
+			rs.setViewName("AddHoliday.jsp");	
 			rs.setReturnObject(outputMap);		
 		}
 		catch (Exception e)
@@ -9701,12 +9702,12 @@ public class ConfigurationServiceImpl  extends CommonFunctions
 	public CustomResultObject checkInThisEmployee(HttpServletRequest request,Connection con)
 	{
 		CustomResultObject rs=new CustomResultObject();
-		String adhaar_card_no= (request.getParameter("aadhaar_card_no"));		
+		String qr_code= (request.getParameter("qr_code"));	// make changes here based on qr code no	
 		String userId=((HashMap<String, String>) request.getSession().getAttribute("userdetails")).get("user_id");
 		try
 		{	
 			//adhaar_card_no
-			LinkedHashMap<String, String> employeeDetails =lObjConfigDao.getEmployeeDetailsByAdhaarNo(adhaar_card_no, con);
+			LinkedHashMap<String, String> employeeDetails =lObjConfigDao.getEmployeeDetailsByQrCode(qr_code, con);
 			lObjConfigDao.checkInEmployee(employeeDetails.get("user_id"),"I", con);
 			rs.setAjaxData("Data Saved Succesfully for "+ employeeDetails.get("name"));
 			
@@ -9740,7 +9741,7 @@ public class ConfigurationServiceImpl  extends CommonFunctions
 			outputMap.put("lstLastCheckIns", lObjConfigDao.getListOfLastCheckIns(userId,10,connections));
 			
 			
-			rs.setViewName("../CheckIn.jsp");	
+			rs.setViewName("CheckIn.jsp");	
 			rs.setReturnObject(outputMap);		
 		}
 		catch (Exception e)
@@ -9857,7 +9858,7 @@ public class ConfigurationServiceImpl  extends CommonFunctions
 				String startOfApplication = "23/01/1992";
 				outputMap.put("ListOfVisitors", lst);
 
-				rs.setViewName("../Visitors.jsp");
+				rs.setViewName("Visitors.jsp");
 				rs.setReturnObject(outputMap);
 			}
 		} catch (Exception e) {
@@ -9886,7 +9887,7 @@ public class ConfigurationServiceImpl  extends CommonFunctions
 			
 			outputMap.put("employeeList", lObjConfigDao.getEmployeeMaster(outputMap,con));
 			outputMap.put("distinctPurposeOfVisist", lObjConfigDao.getDistinctPurposeOfVisitList(con, appId));
-			rs.setViewName("../AddVisitor.jsp");
+			rs.setViewName("AddVisitor.jsp");
 			rs.setReturnObject(outputMap);
 		} catch (Exception e) {
 			writeErrorToDB(e);
@@ -9943,7 +9944,7 @@ public class ConfigurationServiceImpl  extends CommonFunctions
 			
 			outputMap.put("todaysDate", lObjConfigDao.getDateFromDB(con));
 			outputMap.put("employeeList", lObjConfigDao.getEmployeeMasterWithSupervisorId(outputMap,con));
-			rs.setViewName("../SupervisorSubmitLeave.jsp");
+			rs.setViewName("SupervisorSubmitLeave.jsp");
 			rs.setReturnObject(outputMap);
 		} catch (Exception e) {
 			writeErrorToDB(e);
@@ -10028,7 +10029,7 @@ public class ConfigurationServiceImpl  extends CommonFunctions
 		else
 			{
 				
-				rs.setViewName("../LeaveRegister.jsp");
+				rs.setViewName("LeaveRegister.jsp");
 				
 			}	
 			
@@ -10065,7 +10066,7 @@ public class ConfigurationServiceImpl  extends CommonFunctions
 						"CategoryMaster");
 			} else {
 				outputMap.put("ListOfShift", lst);
-				rs.setViewName("../ShiftMaster.jsp");
+				rs.setViewName("ShiftMaster.jsp");
 				rs.setReturnObject(outputMap);
 			}
 		} catch (Exception e) {
@@ -10089,7 +10090,7 @@ public class ConfigurationServiceImpl  extends CommonFunctions
 				outputMap.put("ShiftDetails", lObjConfigDao.getShiftDetails(outputMap, connections));
 			}
 			outputMap.put("lisitOfShift", lObjConfigDao.getShiftMaster(outputMap, connections));
-			rs.setViewName("../AddShift.jsp");
+			rs.setViewName("AddShift.jsp");
 			rs.setReturnObject(outputMap);
 		} catch (Exception e) {
 			writeErrorToDB(e);
@@ -10175,5 +10176,77 @@ public class ConfigurationServiceImpl  extends CommonFunctions
 		}
 		return rs;
 	}
-}
+	public CustomResultObject showInwardEntry(HttpServletRequest request,Connection connections)
+	{
+		CustomResultObject rs=new CustomResultObject();			
+		HashMap<String, Object> outputMap=new HashMap<>();
+		
+		long inwardId=request.getParameter("inwardId")==null?0L:Long.parseLong(request.getParameter("inwardId"));
+		outputMap.put("inward_id", inwardId);
+		String appId=((HashMap<String, String>) request.getSession().getAttribute("userdetails")).get("app_id");
+		
+		try
+		{	
+			if(inwardId!=0) {outputMap.put("inwardDetails", lObjConfigDao.getInwardDetails(outputMap ,connections));} 
+			rs.setViewName("InwardEntry.jsp");	
+			rs.setReturnObject(outputMap);		
+		}
+		catch (Exception e)
+		{
+				writeErrorToDB(e);
+				rs.setHasError(true);
+		}		
+		return rs;
+	}
+	public CustomResultObject showInwardRegister(HttpServletRequest request,Connection con) throws SQLException
+	{
+		CustomResultObject rs=new CustomResultObject();
+		HashMap<String, Object> outputMap=new HashMap<>();
+		String exportFlag= request.getParameter("exportFlag")==null?"":request.getParameter("exportFlag");
+		String DestinationPath=request.getServletContext().getRealPath("BufferedImagesFolder")+delimiter;
+		String userId=((HashMap<String, String>) request.getSession().getAttribute("userdetails")).get("user_id");
+		String fromDate = request.getParameter("txtfromdate") == null ? "" : request.getParameter("txtfromdate");
+		String toDate = request.getParameter("txttodate") == null ? "" : request.getParameter("txttodate");
+		
+		if (fromDate.equals("")) {
+			fromDate = lObjConfigDao.getDateFromDB(con);
+		}
+		if (toDate.equals("")) {
+			toDate = lObjConfigDao.getDateFromDB(con);
+		}
+		
+		
+		try
+		{
+			String [] colNames= {"vehicleNo","contactPerson","mobileNo","transporterName","vendorName"}; // change according to dao return
+			List<LinkedHashMap<String, Object>> lst=lObjConfigDao.getInward(fromDate,toDate,con);
+			outputMap.put("ListOfEmployees", lst);
+			outputMap.put("txtfromdate", fromDate);
 
+			outputMap.put("txttodate", toDate);
+
+			
+			if(!exportFlag.isEmpty())
+			{
+				outputMap = getCommonFileGenerator(colNames,lst,exportFlag,DestinationPath,userId,"InwardRegister");
+			}
+		else
+			{
+				
+				rs.setViewName("InwardRegister.jsp");
+				
+			}	
+			
+			
+
+		}
+		catch (Exception e)
+		{
+			writeErrorToDB(e);
+			rs.setHasError(true);
+		}		
+		rs.setReturnObject(outputMap);
+
+		return rs;
+	}
+}

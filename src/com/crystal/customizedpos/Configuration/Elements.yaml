@@ -107,3 +107,13 @@ elements:
   parentElementId: 700165
   elementUrl: "?a=showShiftMaster"
   orderNo: 1
+- elementId: 37
+  elementName: "Inward Entry"
+  parentElementId: 31
+  elementUrl: "?a=showInwardEntry"
+  orderNo: 1
+- elementId: 38
+  elementName: "Inward Register"
+  parentElementId: 34
+  elementUrl: "?a=showInwardRegister"
+  orderNo: 1

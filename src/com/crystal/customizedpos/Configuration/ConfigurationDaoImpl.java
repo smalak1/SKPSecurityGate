@@ -18,6 +18,7 @@ import com.crystal.Frameworkpackage.CommonFunctions;
 
 public class ConfigurationDaoImpl extends CommonFunctions {
 
+	private Connection con;
 	public List<LinkedHashMap<String, Object>> getCategoryMaster(HashMap<String, Object> hm,Connection con)
 			throws ClassNotFoundException, SQLException {
 		ArrayList<Object> parameters = new ArrayList<>();
@@ -3612,11 +3613,11 @@ public class ConfigurationDaoImpl extends CommonFunctions {
 		parameters.add(hm.get("email").toString());
 		parameters.add(hm.get("AadharCardNo").toString());
 		parameters.add(hm.get("parent_user_id").toString());
-		
+		parameters.add(hm.get("QrCode").toString());
 		parameters.add(employeeId);
 
 		insertUpdateDuablDB(
-				"UPDATE tbl_user_mst  SET username=?, name = ?,updated_date=SYSDATE(),mobile=?,email=?,aadhar_card_no=?,parent_user_id=? WHERE user_id=?",
+				"UPDATE tbl_user_mst  SET username=?, name = ?,updated_date=SYSDATE(),mobile=?,email=?,aadhar_card_no=?,parent_user_id=?,qr_code=? WHERE user_id=?",
 				parameters, conWithF);
 		return "Employee Updated Succesfully";
 
@@ -3633,7 +3634,8 @@ public class ConfigurationDaoImpl extends CommonFunctions {
 		parameters.add(Long.parseLong(hm.get("app_id").toString()));
 		parameters.add(hm.get("AadharCardNo").toString());
 		parameters.add(Long.parseLong(hm.get("parent_user_id").toString()));
-		String insertQuery = "insert into tbl_user_mst values (default,?,?,sysdate(),null,1,?,?,?,?,?,?)";
+		parameters.add(hm.get("QrCode").toString());
+		String insertQuery = "insert into tbl_user_mst values (default,?,?,sysdate(),null,1,?,?,?,?,?,?,?)";
 		return insertUpdateDuablDB(insertQuery, parameters, conWithF);
 	}
 
@@ -3642,10 +3644,10 @@ public class ConfigurationDaoImpl extends CommonFunctions {
 		parameters.add(ClientId);
 		return getMap(parameters, "select  * from tbl_user_mst where user_id=?", con);
 	}
-	public LinkedHashMap<String, String> getEmployeeDetailsByAdhaarNo(String adhaarNo, Connection con) throws SQLException {
+	public LinkedHashMap<String, String> getEmployeeDetailsByQrCode(String qrCode, Connection con) throws SQLException {
 		ArrayList<Object> parameters = new ArrayList<>();
-		parameters.add(adhaarNo);
-		return getMap(parameters, "select  * from tbl_user_mst where aadhar_card_no=?", con);
+		parameters.add(qrCode);
+		return getMap(parameters, "select  * from tbl_user_mst where qr_code=?", con);
 	}
 
 	public boolean mobileNoAlreadyExist(String mobileNo, long ClientId,String appId,String type, Connection con) throws SQLException {
@@ -6650,5 +6652,21 @@ public class ConfigurationDaoImpl extends CommonFunctions {
 				parameters, conWithF);
 		return "Shift Deleted Succesfully";
 	}
+	public Object getInwardDetails(HashMap<String, Object> outputMap, Connection connections) throws SQLException {		ArrayList<Object> parameters = new ArrayList<>();
+		parameters.add(outputMap);
+		return getMap(parameters,
+			"select * from trn_inward_register where inward_id=?", con);
+
+	}
+	public List<LinkedHashMap<String, Object>> getInward(String fromDate,String toDate,Connection con)
+			throws SQLException, ClassNotFoundException, ParseException {
+		ArrayList<Object> parameters = new ArrayList<>();
+		parameters.add(getDateASYYYYMMDD(fromDate));
+		parameters.add(getDateASYYYYMMDD(toDate));
+		return getListOfLinkedHashHashMap(parameters,
+				"select *,tum2.name supervisorName from trn_leave_register tlr,tbl_user_mst tum,tbl_user_mst tum2 where tum.user_id=tlr.employee_id and tum2.user_id=tlr.supervisor_id and tlr.leave_date between ? and ? order by leave_date desc" ,
+				con);
+	}
+
 	
       }

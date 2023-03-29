@@ -1,5 +1,8 @@
 package com.crystal.customizedpos.Configuration;
 
+import java.io.IOException;
+import java.sql.SQLException;
+
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
@@ -16,7 +19,12 @@ public class Config implements ServletContextListener {
     	
     	
     	CommonFunctions cf=new CommonFunctions();
-    	cf.initializeApplication(new Class[] {ConfigurationServiceImpl.class,LoginServiceImpl.class});
+    	try {
+			cf.initializeApplication(new Class[] {ConfigurationServiceImpl.class,LoginServiceImpl.class},event.getServletContext());
+		} catch (ClassNotFoundException | SQLException | IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     	    	
 
     	

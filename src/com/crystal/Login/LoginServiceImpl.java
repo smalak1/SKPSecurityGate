@@ -146,49 +146,9 @@ public class LoginServiceImpl extends CommonFunctions {
 		return calculatedDetails;
 	}
 
-	public CustomResultObject showChangePassword(HttpServletRequest request, Connection con) {
-		CustomResultObject rs = new CustomResultObject();
-		HashMap<String, Object> outputMap = new HashMap<>();
-		try {
+	
 
-			rs.setViewName("changePassword.jsp");
-			rs.setReturnObject(outputMap);
 
-		} catch (Exception e) {
-			writeErrorToDB(e);
-			rs.setHasError(true);
-		}
-		return rs;
-	}
-
-	public CustomResultObject changePassword(HttpServletRequest request, Connection con) throws FileUploadException {
-		CustomResultObject rs = new CustomResultObject();
-		HashMap<String, Object> outputMap = new HashMap<>();
-		try {
-
-			String oldPassword = URLDecoder.decode(request.getParameter("oldPassword"), "UTF-8");
-			String newPassword = URLDecoder.decode(request.getParameter("newPassword"), "UTF-8");
-
-			String username = request.getSession().getAttribute("username").toString();
-			LoginDaoImpl loginDao = new LoginDaoImpl();
-			HashMap<String, String> loginDetails = loginDao.validateLoginUSingJDBC(username, oldPassword, con);
-			String message = "";
-			if (loginDetails != null) {
-				loginDao.changePassword(username, newPassword, con);
-				message = "Password Changed Succesfully ";
-			} else {
-				message = "Invalid Old Password";
-			}
-
-			rs.setReturnObject(outputMap);
-			rs.setAjaxData(message);
-
-		} catch (Exception e) {
-			writeErrorToDB(e);
-			rs.setHasError(true);
-		}
-		return rs;
-	}
 	
 	
 

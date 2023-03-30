@@ -206,7 +206,7 @@ docReady(function() {
  		  window.location.reload();
  		}
  	  };
- 	  xhttp.open("GET","?a=checkInThisEmployee&aadhaar_card_no="+decodedText, true);    
+ 	  xhttp.open("GET","?a=checkInThisEmployee&qr_code="+decodedText, true);    
  	  xhttp.send();
 		
 		

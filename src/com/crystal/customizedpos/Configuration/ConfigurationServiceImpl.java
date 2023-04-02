@@ -9702,20 +9702,28 @@ public class ConfigurationServiceImpl  extends CommonFunctions
 	public CustomResultObject checkInThisEmployee(HttpServletRequest request,Connection con)
 	{
 		CustomResultObject rs=new CustomResultObject();
-		String qr_code= (request.getParameter("qr_code"));	// make changes here based on qr code no	
+		String qr_code= (request.getParameter("qr_code"));	
 		String userId=((HashMap<String, String>) request.getSession().getAttribute("userdetails")).get("user_id");
 		try
-		{	
-			//adhaar_card_no
-			LinkedHashMap<String, String> employeeDetails =lObjConfigDao.getEmployeeDetailsByQrCode(qr_code, con);
-			lObjConfigDao.checkInEmployee(employeeDetails.get("user_id"),"I", con);
-			rs.setAjaxData("Data Saved Succesfully for "+ employeeDetails.get("name"));
-			
-			
+		{
+			String returnMessage="";
+			LinkedHashMap<String, String> employeeDetails =lObjConfigDao.getEmployeeDetailsByQrCode(qr_code, con);			
+			if(lObjConfigDao.checkifduplicateentry(employeeDetails.get("user_id").toString(),30,con))
+			{
+				returnMessage="Check in / Check out is alreadyCaptured. Please try again after 30 Seconds for "+employeeDetails.get("name");
+			}
+			else
+			{
+				String getCheckType=lObjConfigDao.getCheckType(employeeDetails.get("user_id").toString(),con);
+				String time=lObjConfigDao.checkInEmployee(employeeDetails.get("user_id"),getCheckType, con);
+				returnMessage = "Data Saved Successfully for " + employeeDetails.get("name") + "|"
+						+ employeeDetails.get("name") +"~"+time+"~"+getCheckType ;
+			}			
+			rs.setAjaxData(returnMessage);
 		}
 		catch (Exception e)
 		{
-			writeErrorToDB(e);
+				writeErrorToDB(e);
 				rs.setHasError(true);
 		}		
 		return rs;

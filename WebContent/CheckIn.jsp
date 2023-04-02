@@ -102,7 +102,7 @@
               
               <!-- /.card-header -->
               <div class="card-body table-responsive p-0" style="height: 580px;">                
-                <table id="example1"class="table table-head-fixed  table-bordered table-striped dataTable dtr-inline" role="grid" aria-describedby="example1_info">
+                <table id="example1" class="table table-head-fixed  table-bordered table-striped dataTable dtr-inline" role="grid" aria-describedby="example1_info">
                 
                 
                 <thead>
@@ -118,7 +118,7 @@
                      <th><b>Check Time</b></th>
                      <th><b>Type</b></th>    
                                     
-                     <th></th>
+                     
                      
                     </tr>
                   </thead>
@@ -128,7 +128,7 @@
 					
 						<td>${check.name}</td>
 						<td>${check.checked_time}</td>
-						<td>${check.check_in_type}</td>
+						
 						<td>
 						
 						<c:if test="${check.check_in_type eq 'I'}">							  				
@@ -143,12 +143,8 @@
 						</td>
 											
 						
-						<td>
-							<a href="#" onclick='openLocation(${check.latitude},${check.longitude})'>
-								${check.latitude} ${check.longitude}								
-							</a>
-						</td>
-						<td>${check.remarks}</td>
+						
+						
 						
 						
 					</tr>
@@ -189,21 +185,38 @@ docReady(function() {
 	var codeId = 0;
 	function onScanSuccess(decodedText, decodedResult) {
 		beep();
-		html5QrcodeScanner.clear();
+		html5QrCode.stop();
 		
 		
 		
-		document.getElementById("closebutton").style.display='none';
- 	   document.getElementById("loader").style.display='block';
- 	$('#myModal').modal({backdrop: 'static', keyboard: false});;
+		//document.getElementById("closebutton").style.display='none';
+ 	   //document.getElementById("loader").style.display='block';
+ 	//$('#myModal').modal({backdrop: 'static', keyboard: false});;
 
  	var xhttp = new XMLHttpRequest();
  	  xhttp.onreadystatechange = function() 
  	  {
  	    if (xhttp.readyState == 4 && xhttp.status == 200) 
  	    { 	      
- 	      alert(xhttp.responseText);
- 		  window.location.reload();
+ 	    	if(xhttp.responseText.includes('alreadyCaptured'))
+ 	    		{
+ 	      			alert(xhttp.responseText);
+ 	    		}
+ 	    	else
+ 	    		{
+	 	      var resposneTextReceived=xhttp.responseText.split('|');
+	 	      alert(resposneTextReceived[0]);
+	 	      var details=resposneTextReceived[1].split('~');
+	 	      //alert(details);
+	 	      var checkString;
+	 	      if(details[2]=="O"){checkString="Check Out";} else {checkString="Check In";}
+	 	     $("#example1 tbody").prepend("<tr><td>"+details[0]+"</td><td>"+details[1]+"</td><td>"+checkString+"</td></tr>");
+			
+	 	     
+ 	    		}
+ 	    	html5QrCode.start({ facingMode: { exact: "environment"} }, config, onScanSuccess);
+ 	     
+ 		  //window.location.reload();
  		}
  	  };
  	  xhttp.open("GET","?a=checkInThisEmployee&qr_code="+decodedText, true);    
@@ -249,10 +262,33 @@ docReady(function() {
                 useBarCodeDetectorIfSupported: true
             },
             rememberLastUsedCamera: true,
+            supportedScanTypes: [Html5QrcodeScanType.SCAN_TYPE_CAMERA],
             showTorchButtonIfSupported: true,
             disableFlip:true
         });
-	html5QrcodeScanner.render(onScanSuccess);
+	//html5QrcodeScanner.render(onScanSuccess);
+	
+	const html5QrCode = new Html5Qrcode("reader",{ 
+        fps: 10,
+        qrbox: qrboxFunction,
+        // Important notice: this is experimental feature, use it at your
+        // own risk. See documentation in
+        // mebjas@/html5-qrcode/src/experimental-features.ts
+        experimentalFeatures: {
+            useBarCodeDetectorIfSupported: true
+        },
+        rememberLastUsedCamera: true,
+        supportedScanTypes: [Html5QrcodeScanType.SCAN_TYPE_CAMERA],
+        showTorchButtonIfSupported: true,
+        disableFlip:true
+    })
+	
+	const config = { fps: 10, qrbox: qrboxFunction ,experimentalFeatures: {
+        useBarCodeDetectorIfSupported: true
+    }};
+	
+	html5QrCode.start({ facingMode: { exact: "environment"} }, config, onScanSuccess);
+
 });
 
 

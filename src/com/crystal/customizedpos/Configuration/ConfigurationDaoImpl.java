@@ -13,6 +13,8 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 
+import org.jsoup.select.Evaluator.IsEmpty;
+
 import com.crystal.Frameworkpackage.CommonFunctions;
 
 
@@ -4725,12 +4727,51 @@ public class ConfigurationDaoImpl extends CommonFunctions {
 		return insertUpdateDuablDB("insert into trn_expense_register values (default,?,?,?,sysdate(),?,1,?)", parameters, conWithF);
 	}
 	
-	public long checkInEmployee(String employeeId,String checkInType,Connection conWithF) throws Exception {
+	public String checkInEmployee(String employeeId,String checkInType,Connection conWithF) throws Exception {
 		ArrayList<Object> parameters = new ArrayList<>();
+		String getCurrentTimeWithSeconds=getDateTimeWithSecondsYYYYMMDDHHMMSS(conWithF);
 		parameters.add(employeeId);
 		parameters.add(checkInType);
-		return insertUpdateDuablDB("insert into trn_checkin_register values (default,?,?,sysdate(),1)", parameters, conWithF);
+		parameters.add(getCurrentTimeWithSeconds);
+		insertUpdateDuablDB("insert into trn_checkin_register values (default,?,?,?,1)", parameters, conWithF);
+		return getCurrentTimeWithSeconds;
 	}
+	
+	public boolean checkifduplicateentry(String employeeId,int seconds, Connection conWithF) throws Exception {
+		ArrayList<Object> parameters = new ArrayList<>();
+		parameters.add(seconds);
+		parameters.add(employeeId);
+		
+		return getMap(parameters, "select \r\n"
+				+ "case when TIMESTAMPDIFF(SECOND,max(checked_time),sysdate()) <? then true else false end isDuplicate\r\n"
+				+ "from trn_checkin_register tcr  where user_id =?", conWithF).get("isDuplicate").equals("1");
+	}
+	public String getCheckType(String employeeId,Connection conWithF) throws Exception {
+		String returnString="";
+		ArrayList<Object> parameters = new ArrayList<>();
+		parameters.add(employeeId);
+		LinkedHashMap<String, String> LastCheckInMap=getMap(parameters,
+				"select check_in_type from trn_checkin_register where user_id=? and activate_flag=1 order by check_in_id desc limit 1",
+				conWithF);
+		if((LastCheckInMap.isEmpty()))
+		{
+			returnString="I";
+		}
+		else
+		{
+			String lastCheckIn=LastCheckInMap.get("check_in_type");
+			if(lastCheckIn.equals("O")) 
+			{
+				returnString="I";
+			}
+			else
+			{
+				returnString="O";
+			}
+		}
+		return returnString;
+	}
+	
 	
 	
 

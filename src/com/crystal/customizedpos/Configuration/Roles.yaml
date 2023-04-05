@@ -9,8 +9,8 @@ roles:
   elements: 11,12,21,22,23,24,25,10,700195,700197
 - roleName: "Guard"
   roleId: 3
-  actions: showUserAudit,showHomePage,validateLogin,Logout,showUserRoleMapping,getRoleDetailsForthisUser,addRemoveRole
-  elements: 11,12,21,22,23,24,25,10,700195,700197
+  actions: showCheckInScreen,showHomePage,validateLogin,Logout
+  elements: 11,21,22,23,24,25,10,700195,700168,700165
 - roleName: "Employee"
   roleId: 4
   actions: showUserAudit,showHomePage,validateLogin,Logout,showUserRoleMapping,getRoleDetailsForthisUser,addRemoveRole

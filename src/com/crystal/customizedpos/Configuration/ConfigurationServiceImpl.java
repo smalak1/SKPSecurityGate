@@ -9708,9 +9708,9 @@ public class ConfigurationServiceImpl  extends CommonFunctions
 		{
 			String returnMessage="";
 			LinkedHashMap<String, String> employeeDetails =lObjConfigDao.getEmployeeDetailsByQrCode(qr_code, con);			
-			if(lObjConfigDao.checkifduplicateentry(employeeDetails.get("user_id").toString(),30,con))
+			if(lObjConfigDao.checkifduplicateentry(employeeDetails.get("user_id").toString(),120,con))
 			{
-				returnMessage="Check in / Check out is alreadyCaptured. Please try again after 30 Seconds for "+employeeDetails.get("name");
+				returnMessage="Check in / Check out is alreadyCaptured. Please try again after 120 Seconds for "+employeeDetails.get("name");
 			}
 			else
 			{

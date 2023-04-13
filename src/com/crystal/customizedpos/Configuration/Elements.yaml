@@ -117,3 +117,8 @@ elements:
   parentElementId: 34
   elementUrl: "?a=showInwardRegister"
   orderNo: 1
+- elementId: 39
+  elementName: "Attendance Register"
+  parentElementId: 34
+  elementUrl: "?a=showAttendanceRegister"
+  orderNo: 1

@@ -6705,9 +6705,20 @@ public class ConfigurationDaoImpl extends CommonFunctions {
 		parameters.add(getDateASYYYYMMDD(fromDate));
 		parameters.add(getDateASYYYYMMDD(toDate));
 		return getListOfLinkedHashHashMap(parameters,
-				"select *,tum2.name supervisorName from trn_leave_register tlr,tbl_user_mst tum,tbl_user_mst tum2 where tum.user_id=tlr.employee_id and tum2.user_id=tlr.supervisor_id and tlr.leave_date between ? and ? order by leave_date desc" ,
+				"select *,tum2.name supervisorName from trn_leave_register tlr,tbl_user_mst tum,tbl_user_mst tum2 where tum.user_id=tlr.employee_id "
+				+ "and tum2.user_id=tlr.supervisor_id and tlr.leave_date between ? and ? order by leave_date desc" ,
 				con);
 	}
 
-	
+	public List<LinkedHashMap<String, Object>> getAttendance(String fromDate,String toDate,Connection con)
+			throws SQLException, ClassNotFoundException, ParseException {
+		ArrayList<Object> parameters = new ArrayList<>();
+		parameters.add(getDateASYYYYMMDD(fromDate));
+		parameters.add(getDateASYYYYMMDD(toDate));
+		return getListOfLinkedHashHashMap(parameters,
+				"select *,tum.name employeeName from trn_checkin_register tcr,\r\n"
+				+ "tbl_user_mst tum where tum.user_id=tcr.user_id\r\n"
+				+ "and date(tcr.checked_time) between ? and ? order by checked_time desc" ,
+				con);
+	}
       }

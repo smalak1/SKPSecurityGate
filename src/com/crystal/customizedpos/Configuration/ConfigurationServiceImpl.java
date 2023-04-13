@@ -10257,4 +10257,55 @@ public class ConfigurationServiceImpl  extends CommonFunctions
 
 		return rs;
 	}
+	public CustomResultObject showAttendanceRegister(HttpServletRequest request,Connection con) throws SQLException
+	{
+		CustomResultObject rs=new CustomResultObject();
+		HashMap<String, Object> outputMap=new HashMap<>();
+		String exportFlag= request.getParameter("exportFlag")==null?"":request.getParameter("exportFlag");
+		String DestinationPath=request.getServletContext().getRealPath("BufferedImagesFolder")+delimiter;
+		String userId=((HashMap<String, String>) request.getSession().getAttribute("userdetails")).get("user_id");
+		String fromDate = request.getParameter("txtfromdate") == null ? "" : request.getParameter("txtfromdate");
+		String toDate = request.getParameter("txttodate") == null ? "" : request.getParameter("txttodate");
+		
+		if (fromDate.equals("")) {
+			fromDate = lObjConfigDao.getDateFromDB(con);
+		}
+		if (toDate.equals("")) {
+			toDate = lObjConfigDao.getDateFromDB(con);
+		}
+		
+		
+		try
+		{
+			String [] colNames= {"name","checkedTime"}; // change according to dao return
+			List<LinkedHashMap<String, Object>> lst=lObjConfigDao.getAttendance(fromDate,toDate,con);
+			outputMap.put("ListOfEmployees", lst);
+			outputMap.put("txtfromdate", fromDate);
+
+			outputMap.put("txttodate", toDate);
+
+			
+			if(!exportFlag.isEmpty())
+			{
+				outputMap = getCommonFileGenerator(colNames,lst,exportFlag,DestinationPath,userId,"AttendanceRegister");
+			}
+		else
+			{
+				
+				rs.setViewName("../AttendanceRegister.jsp");
+				
+			}	
+			
+			
+
+		}
+		catch (Exception e)
+		{
+			writeErrorToDB(e);
+			rs.setHasError(true);
+		}		
+		rs.setReturnObject(outputMap);
+
+		return rs;
+	}
 }

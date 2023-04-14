@@ -10277,7 +10277,7 @@ public class ConfigurationServiceImpl  extends CommonFunctions
 		
 		try
 		{
-			String [] colNames= {"name","checkedTime"}; // change according to dao return
+			String [] colNames= {"name","checked_time","checkintyped"}; // change according to dao return
 			List<LinkedHashMap<String, Object>> lst=lObjConfigDao.getAttendance(fromDate,toDate,con);
 			outputMap.put("ListOfEmployees", lst);
 			outputMap.put("txtfromdate", fromDate);

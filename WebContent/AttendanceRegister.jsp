@@ -46,7 +46,7 @@
 				<div class="input-group input-group-sm" align="center" style="width: 200px;display:inherit">
 					<div class="icon-bar" style="font-size:22px;color:firebrick">
 						<a title="Download Excel" onclick="downloadExcel()"><i class="fa fa-file-excel-o" aria-hidden="true"></i></a> 
-						<a title="Download PDF" onclick="exportPDFForLedger()"><i class="fa fa-file-pdf-o"></i></a>
+						<a title="Download PDF" onclick="downloadPDF()"><i class="fa fa-file-pdf-o"></i></a>
 						<a title="Download Text"  onclick="downloadText()"><i class="fa fa-file-text-o"></i></a>  
 					</div>           
 				</div>
@@ -77,16 +77,8 @@
 					<tr >
 						<td>${item.name}</td>
 						<td>${item.checked_time}</td>
-						<td>
-						<c:if test="${item.check_in_type eq 'I'}">							  				
-							Check In			  									  
-						</c:if>
+						<td>${item.checkintyped}</td>
 						
-						
-						<c:if test="${item.check_in_type eq 'O'}">							  				
-							Check Out			  									  
-						</c:if>
-						</td>
 						<td><a href="?a=showAttendanceRegister=${item.user_id}">
 					</tr>
 				</c:forEach>

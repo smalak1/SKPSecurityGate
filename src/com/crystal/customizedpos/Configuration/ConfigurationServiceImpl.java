@@ -7992,7 +7992,6 @@ public class ConfigurationServiceImpl  extends CommonFunctions
 			
 		}
 		
-		//System.out.println(reqHM);
 		
 	
 		
@@ -10277,9 +10276,59 @@ public class ConfigurationServiceImpl  extends CommonFunctions
 		
 		try
 		{
-			String [] colNames= {"name","checked_time","checkintyped"}; // change according to dao return
+			String [] colNames= {"name","checked_in_time","checked_out_time"}; // change according to dao return
 			List<LinkedHashMap<String, Object>> lst=lObjConfigDao.getAttendance(fromDate,toDate,con);
+			
+			
+			List<LinkedHashMap<String, Object>> reqList =new ArrayList<>();
+			String previousRow="";
+			
+			for(int i=0;i<lst.size()-1;i++)
+			{
+				LinkedHashMap<String, Object> lhm=new LinkedHashMap<>();
+				lhm.put("user_id", lst.get(i).get("user_id").toString());
+				lhm.put("name", lst.get(i).get("name").toString());
+				if(!previousRow.equals(lst.get(i).get("name").toString()) && i!=0)
+				{
+					LinkedHashMap<String, Object> lhm1=new LinkedHashMap<>();
+					lhm1.put("user_id", "");
+					lhm1.put("name", "");
+					lhm1.put("checked_in_time", "");
+					lhm1.put("checked_out_time", "");
+					reqList.add(lhm1);
+				}
+				previousRow=lst.get(i).get("name").toString();
+				if(lst.get(i).get("check_in_type").equals("I"))
+				{
+					lhm.put("checked_in_time",lst.get(i).get("checked_time").toString());
+				}
+				else
+				{
+					lhm.put("checked_out_time",lst.get(i).get("checked_time").toString());
+				}
+				
+				if(lst.get(i).get("user_id").toString().equals(lst.get(i+1).get("user_id").toString()))
+				{
+					if(lst.get(i+1).get("check_in_type").equals("I"))
+					{
+						lhm.put("checked_in_time",lst.get(i+1).get("checked_time").toString());
+					}
+					else
+					{
+						lhm.put("checked_out_time",lst.get(i+1).get("checked_time").toString());
+					}
+					i++;
+				}
+				
+				
+				reqList.add(lhm);
+			}
+			
+			
+			
 			outputMap.put("ListOfEmployees", lst);
+			outputMap.put("reqList", reqList);
+			
 			outputMap.put("txtfromdate", fromDate);
 
 			outputMap.put("txttodate", toDate);
@@ -10287,7 +10336,7 @@ public class ConfigurationServiceImpl  extends CommonFunctions
 			
 			if(!exportFlag.isEmpty())
 			{
-				outputMap = getCommonFileGenerator(colNames,lst,exportFlag,DestinationPath,userId,"AttendanceRegister");
+				outputMap = getCommonFileGenerator(colNames,reqList,exportFlag,DestinationPath,userId,"AttendanceRegister");
 			}
 		else
 			{

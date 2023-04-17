@@ -6719,7 +6719,7 @@ public class ConfigurationDaoImpl extends CommonFunctions {
 				"select *,tum.name employeeName,"
 				+ "case when check_in_type = 'I' then 'Check In' else 'Check Out' end checkintyped from trn_checkin_register tcr,\r\n"
 				+ "tbl_user_mst tum where tum.user_id=tcr.user_id\r\n"
-				+ "and date(tcr.checked_time) between ? and ? order by checked_time desc" ,
+				+ "and date(tcr.checked_time) between ? and ? order by tum.name,checked_time,check_in_type" ,
 				con);
 	}
       }

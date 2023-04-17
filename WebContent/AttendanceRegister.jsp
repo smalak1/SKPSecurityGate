@@ -7,7 +7,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>  
 
 
-<c:set var="message" value='${requestScope["outputObject"].get("ListOfEmployees")}' />
+<c:set var="reqList" value='${requestScope["outputObject"].get("reqList")}' />
 <c:set var="txtfromdate" value='${requestScope["outputObject"].get("txtfromdate")}' />
 <c:set var="txttodate" value='${requestScope["outputObject"].get("txttodate")}' />
 <c:set var="empDetails" value='${requestScope["outputObject"].get("empDetails")}' />
@@ -65,7 +65,7 @@
                      
                      <th><b>Employee Name</b></th>
                      <th><b>Check Time</b></th>
-                     <th><b> Type</b></th>
+                     <th><b> Check Out Time</b></th>
                      	
                      
                      
@@ -73,11 +73,12 @@
                     </tr>
                   </thead>
                   <tbody>
-				<c:forEach items="${message}" var="item">
+				<c:forEach items="${reqList}" var="item">
 					<tr >
 						<td>${item.name}</td>
-						<td>${item.checked_time}</td>
-						<td>${item.checkintyped}</td>
+						<td>${item.checked_in_time}</td>
+						<td>${item.checked_out_time}</td>
+						
 						
 						<td><a href="?a=showAttendanceRegister=${item.user_id}">
 					</tr>

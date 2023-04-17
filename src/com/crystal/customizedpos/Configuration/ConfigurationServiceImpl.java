@@ -7992,7 +7992,6 @@ public class ConfigurationServiceImpl  extends CommonFunctions
 			
 		}
 		
-		//System.out.println(reqHM);
 		
 	
 		
@@ -10325,7 +10324,6 @@ public class ConfigurationServiceImpl  extends CommonFunctions
 				reqList.add(lhm);
 			}
 			
-			System.out.println(reqList);
 			
 			
 			outputMap.put("ListOfEmployees", lst);

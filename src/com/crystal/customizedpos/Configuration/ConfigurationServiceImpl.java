@@ -10288,6 +10288,7 @@ public class ConfigurationServiceImpl  extends CommonFunctions
 				LinkedHashMap<String, Object> lhm=new LinkedHashMap<>();
 				lhm.put("user_id", lst.get(i).get("user_id").toString());
 				lhm.put("name", lst.get(i).get("name").toString());
+				lhm.put("qr_code", lst.get(i).get("qr_code").toString());
 				if(!previousRow.equals(lst.get(i).get("name").toString()) && i!=0)
 				{
 					LinkedHashMap<String, Object> lhm1=new LinkedHashMap<>();

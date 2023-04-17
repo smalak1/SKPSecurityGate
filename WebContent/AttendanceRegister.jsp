@@ -64,6 +64,8 @@
                     <tr>
                      
                      <th><b>Employee Name</b></th>
+                     <th><b>Emp Code</b></th>
+                     
                      <th><b>Check Time</b></th>
                      <th><b> Check Out Time</b></th>
                      	
@@ -76,6 +78,8 @@
 				<c:forEach items="${reqList}" var="item">
 					<tr >
 						<td>${item.name}</td>
+						<td>${item.qr_code}</td>
+						
 						<td>${item.checked_in_time}</td>
 						<td>${item.checked_out_time}</td>
 						

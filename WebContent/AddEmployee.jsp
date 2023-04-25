@@ -106,7 +106,16 @@ function addEmployee()
     </div>
   </div>
       	
-      
+      <div class="col-sm-3">
+  	<div class="form-group">
+      <label for="email">Type</label>
+      <select class="form-control" id="type" name="type">
+      	<option value="Contract">Contract</option>
+      	<option value="Permanent">Permanent</option>
+      	
+      </select>     
+    </div>
+  </div>
   
   <div class="col-sm-12" align="center">
   	<div class="form-group">

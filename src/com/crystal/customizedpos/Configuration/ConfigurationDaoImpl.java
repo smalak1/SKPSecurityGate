@@ -3616,10 +3616,11 @@ public class ConfigurationDaoImpl extends CommonFunctions {
 		parameters.add(hm.get("AadharCardNo").toString());
 		parameters.add(hm.get("parent_user_id").toString());
 		parameters.add(hm.get("QrCode").toString());
+		parameters.add(hm.get("type").toString());
 		parameters.add(employeeId);
 
 		insertUpdateDuablDB(
-				"UPDATE tbl_user_mst  SET username=?, name = ?,updated_date=SYSDATE(),mobile=?,email=?,aadhar_card_no=?,parent_user_id=?,qr_code=? WHERE user_id=?",
+				"UPDATE tbl_user_mst  SET username=?, name = ?,updated_date=SYSDATE(),mobile=?,email=?,aadhar_card_no=?,parent_user_id=?,qr_code=?,type=? WHERE user_id=?",
 				parameters, conWithF);
 		return "Employee Updated Succesfully";
 
@@ -3637,7 +3638,8 @@ public class ConfigurationDaoImpl extends CommonFunctions {
 		parameters.add(hm.get("AadharCardNo").toString());
 		parameters.add(Long.parseLong(hm.get("parent_user_id").toString()));
 		parameters.add(hm.get("QrCode").toString());
-		String insertQuery = "insert into tbl_user_mst values (default,?,?,sysdate(),null,1,?,?,?,?,?,?,?)";
+		parameters.add(hm.get("type").toString());
+		String insertQuery = "insert into tbl_user_mst values (default,?,?,sysdate(),null,1,?,?,?,?,?,?,?,?)";
 		return insertUpdateDuablDB(insertQuery, parameters, conWithF);
 	}
 

@@ -148,6 +148,7 @@ function addEmployee()
 <c:if test="${employeeDetails.user_id ne null}">
 	
 	document.getElementById("divTitle").innerHTML="Update Employee";
+	type.value="${employeeDetails.type}";
 	
 	document.getElementById('parent_user_id').value='${employeeDetails.parent_user_id}';
 </c:if>
